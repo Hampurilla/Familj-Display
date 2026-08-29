@@ -1,0 +1,5 @@
+[Desktop Entry]
+Type=Application
+Name=Home Display
+Exec=chromium --kiosk --noerrdialogs --disable-infobars --disable-session-crashed-bubble http://localhost:5000
+X-GNOME-Autostart-enabled=true

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Familjen</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body class="display-page">
+  <main class="container">
+    <header class="topbar">
+      <div>
+        <h1>🏠 Familjen</h1>
+        <p class="subtitle">Välj din profil</p>
+      </div>
+      <div class="clock-wrap">
+        <div id="clock"></div>
+        <div id="date"></div>
+      </div>
+    </header>
+
+    <section class="profiles">
+      {% for user in users %}
+      <a class="profile-card" href="/user/{{ user.id }}">
+        <div class="avatar">{{ user.name[0]|upper }}</div>
+        <h2>{{ user.name }}</h2>
+        {% if user.total_tasks %}
+          <div class="profile-stats">
+            <span>✅ {{ user.completed_tasks }}/{{ user.total_tasks }} klara</span>
+            <span>⭐ {{ user.points_left }}p kvar</span>
+          </div>
+        {% else %}
+          <p class="all-done">🎉 Inga uppgifter</p>
+        {% endif %}
+      </a>
+      {% else %}
+      <div class="empty">Inga profiler ännu. Lägg till dem i adminpanelen.</div>
+      {% endfor %}
+    </section>
+  </main>
+  <script src="/static/app.js"></script>
+</body>
+</html>

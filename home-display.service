@@ -1,0 +1,16 @@
+[Unit]
+Description=Home Display Flask App
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=admin
+WorkingDirectory=/home/admin/home-display
+ExecStart=/home/admin/home-display/venv/bin/python /home/admin/home-display/app.py
+Restart=always
+RestartSec=3
+Environment=PYTHONUNBUFFERED=1
+
+[Install]
+WantedBy=multi-user.target

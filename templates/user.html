@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>{{ user.name }}</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body class="display-page">
+  <main class="container">
+    <a class="back" href="/">← Tillbaka</a>
+    <h1>{{ user.name }}</h1>
+    <p class="subtitle">Dina uppgifter</p>
+
+    <section class="task-list">
+      {% for task in tasks %}
+      {% set overdue = task.due_date < today and not task.completed %}
+      <form method="POST" action="/task/{{ task.id }}/toggle">
+        <button type="submit" class="task {% if task.completed %}completed{% endif %} {% if overdue %}overdue{% endif %}">
+          <span class="check">{% if task.completed %}✅{% else %}⬜{% endif %}</span>
+          <span class="task-info">
+            <strong>{{ task.title }}</strong>
+            <small>
+              {% if overdue %}⚠️ Försenad • {% endif %}
+              📅 {{ task.due_date }}
+              {% if task.notes %} • {{ task.notes }}{% endif %}
+            </small>
+          </span>
+          <span class="difficulty">{{ task.difficulty }}p</span>
+        </button>
+      </form>
+      {% else %}
+      <div class="empty">🎉 Allt klart!</div>
+      {% endfor %}
+    </section>
+
+    {% if future %}
+    <section class="future">
+      <h2>Kommande</h2>
+      {% for task in future %}
+      <div class="future-row">
+        <span>{{ task.title }}</span>
+        <small>{{ task.due_date }} • {{ task.difficulty }}p</small>
+      </div>
+      {% endfor %}
+    </section>
+    {% endif %}
+  </main>
+  <script src="/static/app.js"></script>
+</body>
+</html>
