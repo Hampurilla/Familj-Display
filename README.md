@@ -1,19 +1,10 @@
-# Familj Display v2
+# Familj Display v3
 
-Nyheter:
-- Direkt belöning efter avbockad uppgift: slumpad djur-emoji + poäng.
-- Horisontellt väderkort med 3-dagars prognos.
-- Väderplats kan ändras från admin utan kod.
-- Familjens dagliga progress på startsidan.
-- Profilsidan fokuserar på idag; kommande uppgifter är hopfällbara.
-- Stabilare SQLite-migrering så befintliga data kan behållas.
-- Touchvänlig layout utan oavsiktlig textmarkering.
-- Automatisk rättvis tilldelning baserad på dagens belastningspoäng.
+- 128 olika belöningsmärken/emoji-belöningar.
+- Animerad skärmsläckare efter 15 minuter som standard.
+- Rörliga bilar, flyg, stjärnor och stad – ingen videostream behövs.
+- Nattläge kan ställas in i admin; efter inaktivitet blir webbytan helt svart.
+- Timeout, nattstart och nattslut går att ändra i admin.
+- Befintliga profiler, uppgifter och databas behålls.
 
-Väder:
-Open-Meteo används utan API-nyckel. Standard är Borås.
-Ändra namn/latitud/longitud under Admin -> Motivation & väder.
-
-Uppdatering:
-Pi:ns systemd-updater hämtar nya commits från GitHub vid nästa omstart.
-Databasen ligger i data/ och ignoreras av Git.
+Obs: svart nattläge släcker webbytan men stänger inte fysiskt av LCD-bakgrundsbelysningen.

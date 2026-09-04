@@ -85,6 +85,13 @@
         <span>Visa direkt belöning när en uppgift bockas av</span>
       </label>
 
+      <h3>🖥️ Skärm</h3>
+      <label>Inaktivitet innan skärmsläckare</label>
+      <div class="inline-number"><input type="number" min="1" max="120" name="idle_minutes" value="{{ settings.idle_minutes }}"><span>minuter</span></div>
+      <label class="check-line"><input type="checkbox" name="screensaver_enabled" {% if settings.screensaver_enabled == '1' %}checked{% endif %}><span>Animerad skärmsläckare dagtid</span></label>
+      <label class="check-line"><input type="checkbox" name="night_enabled" {% if settings.night_enabled == '1' %}checked{% endif %}><span>Nattläge: svart skärm efter inaktivitet</span></label>
+      <div class="two-col"><div><label>Natt börjar</label><input type="time" name="night_start" value="{{ settings.night_start }}"></div><div><label>Natt slutar</label><input type="time" name="night_end" value="{{ settings.night_end }}"></div></div>
+
       <label>Platsnamn för vädret</label>
       <input name="weather_name" value="{{ settings.weather_name }}" required>
 

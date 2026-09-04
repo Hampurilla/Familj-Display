@@ -19,20 +19,7 @@ DB_PATH.parent.mkdir(exist_ok=True)
 
 RECURRENCE_TYPES = {"once", "daily", "weekly", "biweekly", "monthly"}
 
-REWARDS = [
-    ("🐧", "Pingvin-power!"),
-    ("🦊", "Räven godkänner!"),
-    ("🦦", "Utterbra jobbat!"),
-    ("🐼", "Pandan är imponerad!"),
-    ("🐸", "Grodan säger: klart!"),
-    ("🦝", "Tvättbjörnen firar!"),
-    ("🐢", "Sköldpaddan hejar på!"),
-    ("🦄", "Magiskt avklarat!"),
-    ("🐈", "Katten ger fem tassar!"),
-    ("🐕", "Vovven säger: snyggt!"),
-    ("🦔", "Taggigt bra!"),
-    ("🐙", "Åtta armar upp!"),
-]
+REWARDS = [('🐧', 'Snyggt jobbat!'), ('🦊', 'Yes! Avklarat!'), ('🦦', 'Du fixade det!'), ('🐼', 'Bra momentum!'), ('🐸', 'Grymt!'), ('🦝', 'En grej mindre!'), ('🐢', 'Uppdrag slutfört!'), ('🦄', 'Boom! Klart!'), ('🐈', 'Snyggt jobbat!'), ('🐕', 'Yes! Avklarat!'), ('🦔', 'Du fixade det!'), ('🐙', 'Bra momentum!'), ('🦁', 'Grymt!'), ('🐯', 'En grej mindre!'), ('🐨', 'Uppdrag slutfört!'), ('🐻', 'Boom! Klart!'), ('🐻\u200d❄️', 'Snyggt jobbat!'), ('🐰', 'Yes! Avklarat!'), ('🐹', 'Du fixade det!'), ('🐭', 'Bra momentum!'), ('🐮', 'Grymt!'), ('🐷', 'En grej mindre!'), ('🐵', 'Uppdrag slutfört!'), ('🐺', 'Boom! Klart!'), ('🦓', 'Snyggt jobbat!'), ('🦒', 'Yes! Avklarat!'), ('🦘', 'Du fixade det!'), ('🦬', 'Bra momentum!'), ('🦣', 'Grymt!'), ('🦏', 'En grej mindre!'), ('🦛', 'Uppdrag slutfört!'), ('🐘', 'Boom! Klart!'), ('🦥', 'Snyggt jobbat!'), ('🦨', 'Yes! Avklarat!'), ('🦡', 'Du fixade det!'), ('🐿️', 'Bra momentum!'), ('🦫', 'Grymt!'), ('🦅', 'En grej mindre!'), ('🦉', 'Uppdrag slutfört!'), ('🦜', 'Boom! Klart!'), ('🦚', 'Snyggt jobbat!'), ('🦩', 'Yes! Avklarat!'), ('🕊️', 'Du fixade det!'), ('🐦', 'Bra momentum!'), ('🐤', 'Grymt!'), ('🐥', 'En grej mindre!'), ('🦆', 'Uppdrag slutfört!'), ('🪿', 'Boom! Klart!'), ('🦢', 'Snyggt jobbat!'), ('🐓', 'Yes! Avklarat!'), ('🦃', 'Du fixade det!'), ('🐦\u200d⬛', 'Bra momentum!'), ('🦤', 'Grymt!'), ('🐝', 'En grej mindre!'), ('🦋', 'Uppdrag slutfört!'), ('🐞', 'Boom! Klart!'), ('🪲', 'Snyggt jobbat!'), ('🐛', 'Yes! Avklarat!'), ('🕷️', 'Du fixade det!'), ('🦂', 'Bra momentum!'), ('🐌', 'Grymt!'), ('🐜', 'En grej mindre!'), ('🦗', 'Uppdrag slutfört!'), ('🐢', 'Boom! Klart!'), ('🦎', 'Snyggt jobbat!'), ('🐍', 'Yes! Avklarat!'), ('🐊', 'Du fixade det!'), ('🐲', 'Bra momentum!'), ('🐉', 'Grymt!'), ('🦕', 'En grej mindre!'), ('🦖', 'Uppdrag slutfört!'), ('🐳', 'Boom! Klart!'), ('🐋', 'Snyggt jobbat!'), ('🐬', 'Yes! Avklarat!'), ('🦭', 'Du fixade det!'), ('🦈', 'Bra momentum!'), ('🐟', 'Grymt!'), ('🐠', 'En grej mindre!'), ('🐡', 'Uppdrag slutfört!'), ('🦀', 'Boom! Klart!'), ('🦞', 'Snyggt jobbat!'), ('🦐', 'Yes! Avklarat!'), ('🦑', 'Du fixade det!'), ('🪼', 'Bra momentum!'), ('⭐', 'Grymt!'), ('🌟', 'En grej mindre!'), ('✨', 'Uppdrag slutfört!'), ('💫', 'Boom! Klart!'), ('🌈', 'Snyggt jobbat!'), ('🔥', 'Yes! Avklarat!'), ('⚡', 'Du fixade det!'), ('❄️', 'Bra momentum!'), ('🌊', 'Grymt!'), ('🌙', 'En grej mindre!'), ('☀️', 'Uppdrag slutfört!'), ('🪐', 'Boom! Klart!'), ('☄️', 'Snyggt jobbat!'), ('🚀', 'Yes! Avklarat!'), ('🛸', 'Du fixade det!'), ('✈️', 'Bra momentum!'), ('🏎️', 'Grymt!'), ('🚗', 'En grej mindre!'), ('🏍️', 'Uppdrag slutfört!'), ('🚂', 'Boom! Klart!'), ('⛵', 'Snyggt jobbat!'), ('🚁', 'Yes! Avklarat!'), ('🎈', 'Du fixade det!'), ('🎯', 'Bra momentum!'), ('🏆', 'Grymt!'), ('🥇', 'En grej mindre!'), ('💎', 'Uppdrag slutfört!'), ('👑', 'Boom! Klart!'), ('🎸', 'Snyggt jobbat!'), ('🎹', 'Yes! Avklarat!'), ('🥁', 'Du fixade det!'), ('🎨', 'Bra momentum!'), ('🧩', 'Grymt!'), ('🎲', 'En grej mindre!'), ('🕹️', 'Uppdrag slutfört!'), ('🤖', 'Boom! Klart!'), ('👾', 'Snyggt jobbat!'), ('🧠', 'Yes! Avklarat!'), ('💡', 'Du fixade det!'), ('🔧', 'Bra momentum!'), ('⚙️', 'Grymt!'), ('🛠️', 'En grej mindre!'), ('🔋', 'Uppdrag slutfört!'), ('🔌', 'Boom! Klart!')]
 
 _weather_cache = {"key": None, "at": 0, "data": None}
 
@@ -162,6 +149,11 @@ def init_db():
         "weather_lat": "57.721",
         "weather_lon": "12.940",
         "rewards_enabled": "1",
+        "idle_minutes": "15",
+        "screensaver_enabled": "1",
+        "night_enabled": "1",
+        "night_start": "22:30",
+        "night_end": "07:00",
     }.items():
         conn.execute("INSERT OR IGNORE INTO settings(key, value) VALUES(?, ?)", (k, v))
 
@@ -387,7 +379,7 @@ def fetch_weather():
 
 @app.before_request
 def before_every_request():
-    if request.endpoint not in {"static", "api_version", "api_weather", "health"}:
+    if request.endpoint not in {"static", "api_version", "api_weather", "api_display_settings", "health"}:
         generate_tasks(30)
 
 
@@ -402,6 +394,20 @@ def api_version():
 @app.route("/api/weather")
 def api_weather():
     return jsonify(fetch_weather())
+
+
+@app.route("/api/display-settings")
+def api_display_settings():
+    conn = get_db()
+    data = {
+        "idle_minutes": get_setting(conn, "idle_minutes", "15"),
+        "screensaver_enabled": get_setting(conn, "screensaver_enabled", "1"),
+        "night_enabled": get_setting(conn, "night_enabled", "1"),
+        "night_start": get_setting(conn, "night_start", "22:30"),
+        "night_end": get_setting(conn, "night_end", "07:00"),
+    }
+    conn.close()
+    return jsonify(data)
 
 
 @app.route("/health")
@@ -537,6 +543,11 @@ def admin():
         "weather_lat": get_setting(conn, "weather_lat", "57.721"),
         "weather_lon": get_setting(conn, "weather_lon", "12.940"),
         "rewards_enabled": get_setting(conn, "rewards_enabled", "1"),
+        "idle_minutes": get_setting(conn, "idle_minutes", "15"),
+        "screensaver_enabled": get_setting(conn, "screensaver_enabled", "1"),
+        "night_enabled": get_setting(conn, "night_enabled", "1"),
+        "night_start": get_setting(conn, "night_start", "22:30"),
+        "night_end": get_setting(conn, "night_end", "07:00"),
     }
     conn.close()
     return render_template("admin.html", users=users, templates=templates, settings=settings, today=date.today().isoformat())
@@ -550,6 +561,11 @@ def save_settings():
     set_setting(conn, "weather_lat", request.form.get("weather_lat", "57.721").strip() or "57.721")
     set_setting(conn, "weather_lon", request.form.get("weather_lon", "12.940").strip() or "12.940")
     set_setting(conn, "rewards_enabled", "1" if request.form.get("rewards_enabled") == "on" else "0")
+    set_setting(conn, "idle_minutes", request.form.get("idle_minutes", "15").strip() or "15")
+    set_setting(conn, "screensaver_enabled", "1" if request.form.get("screensaver_enabled") == "on" else "0")
+    set_setting(conn, "night_enabled", "1" if request.form.get("night_enabled") == "on" else "0")
+    set_setting(conn, "night_start", request.form.get("night_start", "22:30").strip() or "22:30")
+    set_setting(conn, "night_end", request.form.get("night_end", "07:00").strip() or "07:00")
     bump_version(conn)
     conn.commit()
     conn.close()
