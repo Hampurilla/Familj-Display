@@ -7,122 +7,146 @@
   <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
-  <main class="container admin">
-    <h1>⚙️ Familjedisplay</h1>
-    <p class="subtitle">Kontrollpanel</p>
+<main class="container admin">
+  <h1>⚙️ Familjedisplay</h1>
+  <p class="subtitle">Kontrollpanel</p>
 
-    <section class="admin-card">
-      <h2>👤 Personer</h2>
-      <form method="POST" action="/admin/user/add" class="stack">
-        <input name="name" placeholder="Namn" autocomplete="off" required>
-        <button type="submit">Lägg till person</button>
+  <section class="admin-card">
+    <h2>👤 Personer</h2>
+    <form method="POST" action="/admin/user/add" class="stack">
+      <input name="name" placeholder="Namn" autocomplete="off" required>
+      <button type="submit">Lägg till person</button>
+    </form>
+    {% for user in users %}
+    <div class="admin-row">
+      <strong>{{ user.name }}</strong>
+      <form method="POST" action="/admin/user/{{ user.id }}/delete">
+        <button class="delete small" type="submit">Ta bort</button>
       </form>
-      {% for user in users %}
-      <div class="admin-row">
-        <strong>{{ user.name }}</strong>
-        <form method="POST" action="/admin/user/{{ user.id }}/delete">
-          <button class="delete small" type="submit">Ta bort</button>
-        </form>
-      </div>
-      {% endfor %}
-    </section>
+    </div>
+    {% endfor %}
+  </section>
 
-    <section class="admin-card">
-      <h2>🧹 Ny uppgift</h2>
-      {% if users %}
-      <form method="POST" action="/admin/template/add" class="stack">
-        <label>Uppgift</label>
-        <input name="title" placeholder="T.ex. Städa köket" autocomplete="off" required>
+  <section class="admin-card">
+    <h2>🧹 Ny uppgift</h2>
+    {% if users %}
+    <form method="POST" action="/admin/template/add" class="stack">
+      <label>Uppgift</label>
+      <input name="title" placeholder="T.ex. Städa köket" autocomplete="off" required>
 
-        <label>Startdatum</label>
-        <input type="date" name="start_date" value="{{ today }}" required>
+      <label>Startdatum</label>
+      <input type="date" name="start_date" value="{{ today }}" required>
 
-        <label>Hur ofta?</label>
-        <select name="recurrence">
-          <option value="once">En gång</option>
-          <option value="daily">Varje dag</option>
-          <option value="weekly">Varje vecka</option>
-          <option value="biweekly">Varannan vecka</option>
-          <option value="monthly">Varje månad</option>
-        </select>
+      <label>Hur ofta?</label>
+      <select name="recurrence">
+        <option value="once">En gång</option>
+        <option value="daily">Varje dag</option>
+        <option value="weekly">Varje vecka</option>
+        <option value="biweekly">Varannan vecka</option>
+        <option value="monthly">Varje månad</option>
+      </select>
 
-        <label>Svårighetsgrad</label>
-        <select name="difficulty">
-          {% for p in range(1, 11) %}
-          <option value="{{ p }}" {% if p == 3 %}selected{% endif %}>{{ p }} poäng</option>
+      <label>Svårighetsgrad</label>
+      <select name="difficulty">
+        {% for p in range(1, 11) %}
+        <option value="{{ p }}" {% if p == 3 %}selected{% endif %}>{{ p }} poäng</option>
+        {% endfor %}
+      </select>
+
+      <label>Tilldelning</label>
+      <select name="assignment_mode" id="assignment_mode">
+        <option value="auto">⚖️ Automatisk – dela jämnt</option>
+        <option value="fixed">👤 Fast person</option>
+      </select>
+
+      <div id="fixed_user_box" class="hidden">
+        <label>Person</label>
+        <select name="fixed_user_id">
+          {% for user in users %}
+          <option value="{{ user.id }}">{{ user.name }}</option>
           {% endfor %}
         </select>
+      </div>
 
-        <label>Tilldelning</label>
-        <select name="assignment_mode" id="assignment_mode">
-          <option value="auto">⚖️ Automatisk – dela jämnt</option>
-          <option value="fixed">👤 Fast person</option>
-        </select>
+      <label>Anteckning (valfritt)</label>
+      <textarea name="notes" placeholder="T.ex. även under bordet"></textarea>
+      <button type="submit">➕ Lägg till uppgift</button>
+    </form>
+    {% else %}
+    <p>Lägg till minst en person först.</p>
+    {% endif %}
+  </section>
 
-        <div id="fixed_user_box" class="hidden">
-          <label>Person</label>
-          <select name="fixed_user_id">
-            {% for user in users %}
-            <option value="{{ user.id }}">{{ user.name }}</option>
-            {% endfor %}
-          </select>
+  <section class="admin-card">
+    <h2>🎁 Motivation & väder</h2>
+    <form method="POST" action="/admin/settings" class="stack">
+      <label class="check-line">
+        <input type="checkbox" name="rewards_enabled" {% if settings.rewards_enabled == '1' %}checked{% endif %}>
+        <span>Visa direkt belöning när en uppgift bockas av</span>
+      </label>
+
+      <label>Platsnamn för vädret</label>
+      <input name="weather_name" value="{{ settings.weather_name }}" required>
+
+      <div class="two-col">
+        <div>
+          <label>Latitud</label>
+          <input name="weather_lat" value="{{ settings.weather_lat }}" inputmode="decimal" required>
         </div>
+        <div>
+          <label>Longitud</label>
+          <input name="weather_lon" value="{{ settings.weather_lon }}" inputmode="decimal" required>
+        </div>
+      </div>
+      <small class="hint">Standard är Borås. Vädret hämtas från Open-Meteo och cachas i 15 minuter.</small>
+      <button type="submit">Spara inställningar</button>
+    </form>
+  </section>
 
-        <label>Anteckning (valfritt)</label>
-        <textarea name="notes" placeholder="T.ex. även under bordet"></textarea>
-
-        <button type="submit">➕ Lägg till uppgift</button>
+  <section class="admin-card">
+    <div class="section-title">
+      <h2>📅 Uppgiftsscheman</h2>
+      <form method="POST" action="/admin/regenerate">
+        <button class="small" type="submit">Generera om</button>
       </form>
-      {% else %}
-      <p>Lägg till minst en person först.</p>
-      {% endif %}
-    </section>
-
-    <section class="admin-card">
-      <div class="section-title">
-        <h2>📅 Återkommande uppgifter</h2>
-        <form method="POST" action="/admin/regenerate">
-          <button class="small" type="submit">Generera om</button>
-        </form>
+    </div>
+    {% for t in templates %}
+    <div class="admin-row">
+      <div class="admin-info">
+        <strong>{{ t.title }}</strong>
+        <small>
+          {{ t.difficulty }}p •
+          {% if t.recurrence == 'once' %}En gång
+          {% elif t.recurrence == 'daily' %}Varje dag
+          {% elif t.recurrence == 'weekly' %}Varje vecka
+          {% elif t.recurrence == 'biweekly' %}Varannan vecka
+          {% elif t.recurrence == 'monthly' %}Varje månad
+          {% endif %}
+          • start {{ t.start_date }}
+          {% if t.assignment_mode == 'fixed' %} • {{ t.fixed_user_name }}{% else %} • Auto{% endif %}
+        </small>
       </div>
+      <form method="POST" action="/admin/template/{{ t.id }}/delete">
+        <button class="delete small" type="submit">Ta bort</button>
+      </form>
+    </div>
+    {% else %}
+    <p>Inga uppgifter skapade ännu.</p>
+    {% endfor %}
+  </section>
+</main>
 
-      {% for t in templates %}
-      <div class="admin-row">
-        <div class="admin-info">
-          <strong>{{ t.title }}</strong>
-          <small>
-            {{ t.difficulty }}p •
-            {% if t.recurrence == 'once' %}En gång
-            {% elif t.recurrence == 'daily' %}Varje dag
-            {% elif t.recurrence == 'weekly' %}Varje vecka
-            {% elif t.recurrence == 'biweekly' %}Varannan vecka
-            {% elif t.recurrence == 'monthly' %}Varje månad
-            {% endif %}
-            • start {{ t.start_date }}
-            {% if t.assignment_mode == 'fixed' %} • {{ t.fixed_user_name }}{% else %} • Auto{% endif %}
-          </small>
-        </div>
-        <form method="POST" action="/admin/template/{{ t.id }}/delete">
-          <button class="delete small" type="submit">Ta bort</button>
-        </form>
-      </div>
-      {% else %}
-      <p>Inga uppgifter skapade ännu.</p>
-      {% endfor %}
-    </section>
-  </main>
-
-  <script>
-    const mode = document.getElementById("assignment_mode");
-    const box = document.getElementById("fixed_user_box");
-    function syncMode() {
-      if (!mode || !box) return;
-      box.classList.toggle("hidden", mode.value !== "fixed");
-    }
-    if (mode) {
-      mode.addEventListener("change", syncMode);
-      syncMode();
-    }
-  </script>
+<script>
+const mode = document.getElementById("assignment_mode");
+const box = document.getElementById("fixed_user_box");
+function syncMode() {
+  if (!mode || !box) return;
+  box.classList.toggle("hidden", mode.value !== "fixed");
+}
+if (mode) {
+  mode.addEventListener("change", syncMode);
+  syncMode();
+}
+</script>
 </body>
 </html>

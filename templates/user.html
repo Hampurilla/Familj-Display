@@ -7,45 +7,61 @@
   <link rel="stylesheet" href="/static/style.css">
 </head>
 <body class="display-page">
-  <main class="container">
-    <a class="back" href="/">← Tillbaka</a>
-    <h1>{{ user.name }}</h1>
-    <p class="subtitle">Dina uppgifter</p>
+<main class="container">
+  <a class="back" href="/">← Tillbaka</a>
 
-    <section class="task-list">
-      {% for task in tasks %}
-      {% set overdue = task.due_date < today and not task.completed %}
-      <form method="POST" action="/task/{{ task.id }}/toggle">
-        <button type="submit" class="task {% if task.completed %}completed{% endif %} {% if overdue %}overdue{% endif %}">
-          <span class="check">{% if task.completed %}✅{% else %}⬜{% endif %}</span>
-          <span class="task-info">
-            <strong>{{ task.title }}</strong>
-            <small>
-              {% if overdue %}⚠️ Försenad • {% endif %}
-              📅 {{ task.due_date }}
-              {% if task.notes %} • {{ task.notes }}{% endif %}
-            </small>
-          </span>
-          <span class="difficulty">{{ task.difficulty }}p</span>
-        </button>
-      </form>
-      {% else %}
-      <div class="empty">🎉 Allt klart!</div>
-      {% endfor %}
-    </section>
+  <header class="person-head">
+    <div>
+      <h1>{{ user.name }}</h1>
+      <p class="subtitle">Dagens fokus</p>
+    </div>
+    <div class="points-pill">⭐ {{ stats.today_done }}/{{ stats.today_total }}p idag</div>
+  </header>
 
-    {% if future %}
-    <section class="future">
-      <h2>Kommande</h2>
-      {% for task in future %}
-      <div class="future-row">
-        <span>{{ task.title }}</span>
-        <small>{{ task.due_date }} • {{ task.difficulty }}p</small>
-      </div>
-      {% endfor %}
-    </section>
-    {% endif %}
-  </main>
-  <script src="/static/app.js"></script>
+  <section class="task-list">
+    {% for task in tasks %}
+    {% set overdue = task.due_date < today and not task.completed %}
+    <form method="POST" action="/task/{{ task.id }}/toggle" class="task-form" data-task-id="{{ task.id }}">
+      <button type="submit" class="task {% if task.completed %}completed{% endif %} {% if overdue %}overdue{% endif %}">
+        <span class="check">{% if task.completed %}✅{% else %}⬜{% endif %}</span>
+        <span class="task-info">
+          <strong>{{ task.title }}</strong>
+          <small>
+            {% if overdue %}⚠️ Försenad • {% endif %}
+            {% if task.due_date == today %}Idag{% else %}📅 {{ task.due_date }}{% endif %}
+            {% if task.notes %} • {{ task.notes }}{% endif %}
+          </small>
+        </span>
+        <span class="difficulty">{{ task.difficulty }}p</span>
+      </button>
+    </form>
+    {% else %}
+    <div class="empty big-empty">🎉 Allt klart för idag!</div>
+    {% endfor %}
+  </section>
+
+  {% if future %}
+  <details class="future">
+    <summary>Kommande uppgifter</summary>
+    {% for task in future %}
+    <div class="future-row">
+      <span>{{ task.title }}</span>
+      <small>{{ task.due_date }} • {{ task.difficulty }}p</small>
+    </div>
+    {% endfor %}
+  </details>
+  {% endif %}
+</main>
+
+<div class="reward-overlay" id="rewardOverlay" aria-hidden="true">
+  <div class="reward-card">
+    <div class="reward-burst">✨</div>
+    <div class="reward-emoji" id="rewardEmoji">🐧</div>
+    <h2 id="rewardMessage">Snyggt!</h2>
+    <div class="reward-points" id="rewardPoints">+3 poäng</div>
+  </div>
+</div>
+
+<script src="/static/app.js"></script>
 </body>
 </html>
