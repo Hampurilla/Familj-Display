@@ -1,0 +1,135 @@
+/* =========================================================
+   Familj Display v5.1 - Touch Scroll Fix
+   Safe additive patch.
+   ========================================================= */
+
+/* Page-level scrolling */
+html,
+body {
+    width: 100% !important;
+    min-height: 100% !important;
+
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+
+    scrollbar-width: none !important;
+
+    -webkit-overflow-scrolling: touch;
+
+    overscroll-behavior-x: none;
+    overscroll-behavior-y: contain;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar,
+*::-webkit-scrollbar {
+    width: 0 !important;
+    height: 0 !important;
+    display: none !important;
+    background: transparent !important;
+}
+
+/* The display should behave like a native touch UI */
+body.display-page,
+body:not(.admin-page) {
+    touch-action: pan-y !important;
+
+    -webkit-user-select: none !important;
+    user-select: none !important;
+
+    -webkit-touch-callout: none !important;
+}
+
+/* Large content wrappers must never kill vertical pan */
+main,
+.container,
+.page,
+.content,
+.dashboard,
+.dashboard-grid,
+.dashboard-strip,
+.profiles,
+.profile-grid,
+.task-list,
+.tasks,
+.future,
+.badge-grid,
+.collection,
+section,
+article {
+    touch-action: pan-y !important;
+}
+
+/* Prevent accidental horizontal page movement */
+main,
+.container,
+.page,
+.content {
+    max-width: 100%;
+    overflow-x: clip;
+}
+
+/* Interactive controls remain tappable.
+   "manipulation" permits taps without introducing 300ms delay. */
+button,
+a,
+[role="button"],
+.task,
+.profile-card,
+summary {
+    touch-action: manipulation !important;
+}
+
+/* Forms/admin must still allow selection, cursor movement and controls */
+input,
+textarea,
+select,
+option,
+[contenteditable="true"] {
+    -webkit-user-select: text !important;
+    user-select: text !important;
+
+    touch-action: manipulation !important;
+}
+
+/* If the app uses its own scroll areas, make those touch-native too. */
+.scrollable,
+.scroll-area,
+.modal-content,
+.drawer-content,
+.admin,
+.admin-content {
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+}
+
+/* Avoid layouts where a fullscreen wrapper accidentally blocks body scroll. */
+body.display-page > main,
+body.display-page > .container,
+body.display-page .page {
+    min-height: 100%;
+    height: auto !important;
+}
+
+/* Keep fixed overlays from affecting normal scrolling when hidden. */
+[aria-hidden="true"].reward-overlay,
+[aria-hidden="true"].screen-idle,
+[aria-hidden="true"].screensaver {
+    pointer-events: none !important;
+}
+
+/* Touch target sizing */
+button,
+a,
+[role="button"],
+summary {
+    min-height: 44px;
+}
+
+/* Reduce accidental text/image dragging */
+img,
+svg {
+    -webkit-user-drag: none;
+    user-drag: none;
+}
