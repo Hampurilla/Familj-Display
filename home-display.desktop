@@ -1,5 +1,6 @@
 [Desktop Entry]
 Type=Application
-Name=Home Display
-Exec=chromium --kiosk --noerrdialogs --disable-infobars --disable-session-crashed-bubble http://localhost:5000
+Name=Familj Display
+Exec=/bin/bash /home/admin/home-display/scripts/kiosk.sh
+Terminal=false
 X-GNOME-Autostart-enabled=true

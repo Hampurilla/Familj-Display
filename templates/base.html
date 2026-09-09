@@ -1,0 +1,29 @@
+{% from 'macros.html' import icon, token with context %}
+<!doctype html><html lang="sv"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#f2efe6"><meta name="description" content="Familjens lokala plats f&#246;r en lite lugnare vardag.">
+<title>{% block title %}Hemma &middot; Familj Display{% endblock %}</title>
+<link rel="icon" href="{{ asset('favicon.svg') }}" type="image/svg+xml">
+<link rel="stylesheet" href="{{ asset('style.css') }}">
+</head><body class="{{ 'admin-page' if boot.view in ['admin','login'] else 'display-page' }}" data-view="{{ boot.view }}">
+<a class="skip-link" href="#main">Till inneh&aring;llet</a>
+{% include '_icons.html' %}
+<div class="app-shell">
+<header class="app-header"><a class="brand" href="/" aria-label="Hemma, startsidan"><span class="brand-mark"><i></i><i></i><i></i><i></i></span><span>hemma<span class="brand-period">.</span></span><small>FAMILJ DISPLAY</small></a>
+  <div class="header-actions"><span class="connection" id="connection"><i></i><span>Lokalt &amp; i synk</span></span>
+  {% if boot.view not in ['admin','login'] %}<button class="icon-button" id="preview-saver" title="Vila sk&#228;rmen" aria-label="Vila sk&#228;rmen">{{ icon('moon') }}</button><a class="icon-button" href="/admin" title="Kontrollpanel" aria-label="Kontrollpanel">{{ icon('settings') }}</a>{% else %}<a class="text-button" href="/">{{ icon('home') }}<span>Display</span></a>{% endif %}</div>
+</header>
+{% block content %}{% endblock %}
+</div>
+<div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+{% if boot.view not in ['admin','login','error'] %}
+<div id="reward" class="reward-overlay" role="dialog" aria-modal="true" aria-labelledby="reward-message" hidden>
+  <div class="reward-card"><div class="reward-orbit" aria-hidden="true"></div><p class="eyebrow" id="reward-new">En liten seger</p><div class="reward-figure" id="reward-emoji"></div><span class="rarity-tag" id="reward-rarity"></span><h2 id="reward-message"></h2><p id="reward-name"></p><div class="reward-score" id="reward-points"></div><button class="button secondary" id="reward-close">Forts&auml;tt {{ icon('arrow') }}</button></div>
+</div>
+<div id="screensaver" class="screensaver" role="button" tabindex="0" aria-label="Tryck f&#246;r att v&#228;cka displayen" hidden><canvas id="saver-canvas" aria-hidden="true"></canvas></div>
+{% endif %}
+<script id="boot" type="application/json">{{ boot|tojson }}</script>
+{% if boot.view not in ['admin','login','error'] %}<script src="{{ asset('saver.js') }}" defer></script>{% endif %}
+<script src="{{ asset('app.js') }}" defer></script>
+{% if boot.view=='admin' %}<script src="{{ asset('admin.js') }}" defer></script>{% endif %}
+</body></html>

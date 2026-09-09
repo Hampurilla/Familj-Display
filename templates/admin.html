@@ -1,159 +1,27 @@
-<!DOCTYPE html>
-<html lang="sv">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Familjedisplay Admin</title>
-  <link rel="stylesheet" href="/static/style.css">
-</head>
-<body>
-<main class="container admin">
-  <h1>⚙️ Familjedisplay</h1>
-  <p class="subtitle">Kontrollpanel</p>
-
-  <section class="admin-card">
-    <h2>👤 Personer</h2>
-    <form method="POST" action="/admin/user/add" class="stack">
-      <input name="name" placeholder="Namn" autocomplete="off" required>
-      <button type="submit">Lägg till person</button>
-    </form>
-    {% for user in users %}
-    <div class="admin-row">
-      <strong>{{ user.name }}</strong>
-      <form method="POST" action="/admin/user/{{ user.id }}/delete">
-        <button class="delete small" type="submit">Ta bort</button>
-      </form>
-    </div>
-    {% endfor %}
-  </section>
-
-  <section class="admin-card">
-    <h2>🧹 Ny uppgift</h2>
-    {% if users %}
-    <form method="POST" action="/admin/template/add" class="stack">
-      <label>Uppgift</label>
-      <input name="title" placeholder="T.ex. Städa köket" autocomplete="off" required>
-
-      <label>Startdatum</label>
-      <input type="date" name="start_date" value="{{ today }}" required>
-
-      <label>Hur ofta?</label>
-      <select name="recurrence">
-        <option value="once">En gång</option>
-        <option value="daily">Varje dag</option>
-        <option value="weekly">Varje vecka</option>
-        <option value="biweekly">Varannan vecka</option>
-        <option value="monthly">Varje månad</option>
-      </select>
-
-      <label>Svårighetsgrad</label>
-      <select name="difficulty">
-        {% for p in range(1, 11) %}
-        <option value="{{ p }}" {% if p == 3 %}selected{% endif %}>{{ p }} poäng</option>
-        {% endfor %}
-      </select>
-
-      <label>Tilldelning</label>
-      <select name="assignment_mode" id="assignment_mode">
-        <option value="auto">⚖️ Automatisk – dela jämnt</option>
-        <option value="fixed">👤 Fast person</option>
-      </select>
-
-      <div id="fixed_user_box" class="hidden">
-        <label>Person</label>
-        <select name="fixed_user_id">
-          {% for user in users %}
-          <option value="{{ user.id }}">{{ user.name }}</option>
-          {% endfor %}
-        </select>
-      </div>
-
-      <label>Anteckning (valfritt)</label>
-      <textarea name="notes" placeholder="T.ex. även under bordet"></textarea>
-      <button type="submit">➕ Lägg till uppgift</button>
-    </form>
-    {% else %}
-    <p>Lägg till minst en person först.</p>
-    {% endif %}
-  </section>
-
-  <section class="admin-card">
-    <h2>🎁 Motivation & väder</h2>
-    <form method="POST" action="/admin/settings" class="stack">
-      <label class="check-line">
-        <input type="checkbox" name="rewards_enabled" {% if settings.rewards_enabled == '1' %}checked{% endif %}>
-        <span>Visa direkt belöning när en uppgift bockas av</span>
-      </label>
-
-      <h3>🖥️ Skärm</h3>
-      <label>Inaktivitet innan skärmsläckare</label>
-      <div class="inline-number"><input type="number" min="1" max="120" name="idle_minutes" value="{{ settings.idle_minutes }}"><span>minuter</span></div>
-      <label class="check-line"><input type="checkbox" name="screensaver_enabled" {% if settings.screensaver_enabled == '1' %}checked{% endif %}><span>Animerad skärmsläckare dagtid</span></label>
-      <label class="check-line"><input type="checkbox" name="night_enabled" {% if settings.night_enabled == '1' %}checked{% endif %}><span>Nattläge: svart skärm efter inaktivitet</span></label>
-      <div class="two-col"><div><label>Natt börjar</label><input type="time" name="night_start" value="{{ settings.night_start }}"></div><div><label>Natt slutar</label><input type="time" name="night_end" value="{{ settings.night_end }}"></div></div>
-
-      <label>Platsnamn för vädret</label>
-      <input name="weather_name" value="{{ settings.weather_name }}" required>
-
-      <div class="two-col">
-        <div>
-          <label>Latitud</label>
-          <input name="weather_lat" value="{{ settings.weather_lat }}" inputmode="decimal" required>
-        </div>
-        <div>
-          <label>Longitud</label>
-          <input name="weather_lon" value="{{ settings.weather_lon }}" inputmode="decimal" required>
-        </div>
-      </div>
-      <small class="hint">Standard är Borås. Vädret hämtas från Open-Meteo och cachas i 15 minuter.</small>
-      <button type="submit">Spara inställningar</button>
-    </form>
-  </section>
-
-  <section class="admin-card">
-    <div class="section-title">
-      <h2>📅 Uppgiftsscheman</h2>
-      <form method="POST" action="/admin/regenerate">
-        <button class="small" type="submit">Generera om</button>
-      </form>
-    </div>
-    {% for t in templates %}
-    <div class="admin-row">
-      <div class="admin-info">
-        <strong>{{ t.title }}</strong>
-        <small>
-          {{ t.difficulty }}p •
-          {% if t.recurrence == 'once' %}En gång
-          {% elif t.recurrence == 'daily' %}Varje dag
-          {% elif t.recurrence == 'weekly' %}Varje vecka
-          {% elif t.recurrence == 'biweekly' %}Varannan vecka
-          {% elif t.recurrence == 'monthly' %}Varje månad
-          {% endif %}
-          • start {{ t.start_date }}
-          {% if t.assignment_mode == 'fixed' %} • {{ t.fixed_user_name }}{% else %} • Auto{% endif %}
-        </small>
-      </div>
-      <form method="POST" action="/admin/template/{{ t.id }}/delete">
-        <button class="delete small" type="submit">Ta bort</button>
-      </form>
-    </div>
-    {% else %}
-    <p>Inga uppgifter skapade ännu.</p>
-    {% endfor %}
-  </section>
-</main>
-
-<script>
-const mode = document.getElementById("assignment_mode");
-const box = document.getElementById("fixed_user_box");
-function syncMode() {
-  if (!mode || !box) return;
-  box.classList.toggle("hidden", mode.value !== "fixed");
-}
-if (mode) {
-  mode.addEventListener("change", syncMode);
-  syncMode();
-}
-</script>
-</body>
-</html>
+{% extends 'base.html' %}{% block title %}Kontrollpanel &middot; Hemma{% endblock %}
+{% block content %}
+<main id="main" class="admin-main"><header class="admin-title"><div><p class="eyebrow">Bakom en lite lugnare vardag</p><h1>Hemma, <em>ordnat.</em></h1></div><a class="button" href="/admin?tab=tasks#task-editor">{{ icon('plus') }} Ny uppgift</a></header>
+<nav class="admin-tabs" aria-label="Kontrollpanel"><a href="/admin?tab=overview" {% if active_tab=='overview' %}aria-current="page"{% endif %}>{{ icon('home') }}<span>&Ouml;versikt</span></a><a href="/admin?tab=tasks" {% if active_tab=='tasks' %}aria-current="page"{% endif %}>{{ icon('tasks') }}<span>Uppgifter</span></a><a href="/admin?tab=people" {% if active_tab=='people' %}aria-current="page"{% endif %}>{{ icon('people') }}<span>Personer</span></a><a href="/admin?tab=settings" {% if active_tab=='settings' %}aria-current="page"{% endif %}>{{ icon('settings') }}<span>Inst&auml;llningar</span></a></nav>
+{% for msg in get_flashed_messages() %}<p class="notice success" role="status">{{ icon('check') }} {{ msg }}</p>{% endfor %}
+{% if error %}<p class="notice form-error" role="alert">{{ error }}</p>{% endif %}
+<div class="notice update-notice" id="admin-update-notice" hidden><span>En &auml;ndring har gjorts p&aring; en annan sk&auml;rm. Ditt formul&auml;r &auml;r kvar.</span><button type="button" class="chip" id="admin-refresh">Visa senaste</button></div>
+{% if active_tab=='overview' %}
+<section class="admin-overview"><article class="admin-welcome"><p class="eyebrow">Idag &middot; <span data-date>{{ today }}</span></p><h2>{{ overview.summary.done }} klara.<br><em>{{ overview.summary.left }} att hj&auml;lpas &aring;t med.</em></h2><p>Den h&auml;r vyn r&auml;knar dagens uppgifter och det som &auml;r kvar sedan tidigare.</p><div class="mini-track"><i style="width:{{ overview.summary.percent }}%"></i></div></article><article class="admin-panel"><h2>Familjens l&auml;ge</h2>{% for u in overview.users %}<a href="/user/{{ u.id }}" class="overview-person accent-{{ u.accent }}"><span class="avatar small">{{ u.name[0]|upper }}</span><span><strong>{{ u.name }}</strong><small>{{ u.points_left }} po&auml;ng kvar</small></span><b>{{ u.done }}/{{ u.total }}</b>{{ icon('arrow') }}</a>{% else %}<p>Skapa era profiler under Personer.</p>{% endfor %}</article></section>
+<section class="admin-panel"><div class="section-heading"><h2>En h&auml;lsning hem</h2>{{ icon('leaf') }}</div><p>Visas l&auml;ngst ner p&aring; familjedisplayen.</p><form method="post" action="/admin/settings" class="stack">{{ token() }}<label for="house-note">Dagens meddelande</label><textarea id="house-note" name="house_note" maxlength="240">{{ settings.house_note }}</textarea><label for="goal">Det vi ser fram emot</label><input id="goal" name="family_goal" value="{{ settings.family_goal }}" maxlength="240" placeholder="Till exempel filmkv&#228;ll p&#229; fredag"><button class="button" type="submit">Spara h&auml;lsningen {{ icon('arrow') }}</button></form></section>
+{% elif active_tab=='people' %}
+<div class="admin-columns"><section class="admin-panel"><p class="eyebrow">Hela g&auml;nget</p><h2>L&auml;gg till en person</h2><form method="post" action="/admin/user/add" class="stack">{{ token() }}<label for="new-name">Namn</label><input id="new-name" name="name" required maxlength="40" placeholder="Vad heter personen?" value="{{ draft.get('name','') }}"><label for="new-accent">Profilf&auml;rg</label><select id="new-accent" name="accent">{% for a in accents %}<option value="{{ a }}">{{ {'sage':'Salvia','clay':'Terrakotta','blue':'Dimbl&#229;','honey':'Honung','lilac':'Lavendel','rose':'Ros'}[a]|safe }}</option>{% endfor %}</select><label for="new-share">Andel av automatiska uppgifter</label><select name="share_weight" id="new-share"><option value="0.5">Mindre &middot; halv andel</option><option value="1" selected>Vanlig &middot; en andel</option><option value="1.5">St&ouml;rre &middot; en och en halv</option><option value="2">Stor &middot; dubbel andel</option></select><p class="field-help">Till exempel en mindre andel f&ouml;r ett barn. Begr&auml;nsa ocks&aring; vilka personer som f&aring;r ett visst jobb n&auml;r du skapar schemat.</p><button class="button" type="submit">{{ icon('plus') }} Skapa profil</button></form></section>
+<section class="admin-panel"><h2>Era profiler</h2>{% for u in users %}<details class="person-editor accent-{{ u.accent }}"><summary><span class="avatar small">{{ u.name[0]|upper }}</span><span>{{ u.name }}</span>{{ icon('chevron') }}</summary><form method="post" action="/admin/user/{{ u.id }}/edit" class="stack">{{ token() }}<label for="name-{{ u.id }}">Namn</label><input id="name-{{ u.id }}" name="name" value="{{ u.name }}" required maxlength="40"><label for="accent-{{ u.id }}">F&auml;rg</label><select id="accent-{{ u.id }}" name="accent">{% for a in accents %}<option value="{{ a }}" {% if u.accent==a %}selected{% endif %}>{{ {'sage':'Salvia','clay':'Terrakotta','blue':'Dimbl&#229;','honey':'Honung','lilac':'Lavendel','rose':'Ros'}[a]|safe }}</option>{% endfor %}</select><label for="share-{{ u.id }}">Arbetsandel</label><select id="share-{{ u.id }}" name="share_weight">{% for w in [0.5,1,1.5,2] %}<option value="{{ w }}" {% if u.share_weight==w %}selected{% endif %}>{{ w }} andelar</option>{% endfor %}</select><button class="button secondary" type="submit">Spara profil</button></form><form method="post" action="/admin/user/{{ u.id }}/delete" data-confirm="Arkivera profilen? Historiken sparas. Fasta scheman pausas. Oklara automatiska jobb omf&#246;rdelas om m&#246;jligt; &#246;vriga avslutas.">{{ token() }}<button class="text-button danger" type="submit">Arkivera profil</button></form></details>{% else %}<p>Ingen profil &auml;nnu. B&ouml;rja till v&auml;nster.</p>{% endfor %}<p class="field-help">Arkiverade profiler och deras historik finns kvar i databasen. F&ouml;rdelningen av redan utdelade jobb &auml;ndras inte bara f&ouml;r att du &auml;ndrar en arbetsandel.</p></section></div>
+{% elif active_tab=='tasks' %}
+<section class="admin-panel task-editor" id="task-editor"><div class="section-heading"><div><p class="eyebrow">Ett tydligt jobb i taget</p><h2>{{ 'Redigera schema' if edit else 'Ny uppgift' }}</h2></div>{{ icon('calendar') }}</div>
+{% if users %}<form method="post" action="{{ '/admin/template/' ~ edit.id ~ '/edit' if edit else '/admin/template/add' }}" class="stack">{{ token() }}<div class="form-grid"><div class="field span-2"><label for="task-title">Vad ska g&ouml;ras?</label><input id="task-title" name="title" value="{{ form.title }}" required maxlength="120" placeholder="Till exempel: Plocka undan i k&#246;ket"></div><div class="field"><label for="task-date">F&ouml;rsta datum</label><input id="task-date" name="start_date" type="date" value="{{ form.start_date }}" required></div><div class="field"><label for="task-repeat">Upprepning</label><select id="task-repeat" name="recurrence">{% for key,label in recurrences.items() %}<option value="{{ key }}" {% if form.recurrence==key %}selected{% endif %}>{{ label }}</option>{% endfor %}</select></div><div class="field"><label for="task-points">Arbetsbelastning</label><select name="difficulty" id="task-points">{% for n in range(1,11) %}<option value="{{ n }}" {% if form.difficulty|int==n %}selected{% endif %}>{{ n }} po&auml;ng{% if n==1 %} &middot; mycket l&auml;tt{% elif n==5 %} &middot; medel{% elif n==10 %} &middot; mycket arbete{% endif %}</option>{% endfor %}</select></div><div class="field"><label for="task-mode">Vem g&ouml;r det?</label><select id="task-mode" name="assignment_mode"><option value="auto" {% if form.assignment_mode=='auto' %}selected{% endif %}>F&ouml;rdela automatiskt</option><option value="fixed" {% if form.assignment_mode=='fixed' %}selected{% endif %}>Alltid samma person</option></select></div><div class="field span-2" id="fixed-user-box" {% if form.assignment_mode!='fixed' %}hidden{% endif %}><label for="fixed-user">Person</label><select name="fixed_user_id" id="fixed-user">{% for u in users %}<option value="{{ u.id }}" {% if form.fixed_user_id|int==u.id %}selected{% endif %}>{{ u.name }}</option>{% endfor %}</select></div><fieldset class="span-2 eligibility" id="eligible-box" {% if form.assignment_mode=='fixed' %}hidden{% endif %}><legend>Vilka kan f&aring; jobbet?</legend><p class="field-help">Ingen ikryssad betyder alla aktiva personer.</p><div class="checkbox-chips">{% for u in users %}<label><input type="checkbox" name="eligible_ids" value="{{ u.id }}" {% if u.id in form.allowed or u.id|string in form.allowed %}checked{% endif %}><span>{{ u.name }}</span></label>{% endfor %}</div></fieldset><div class="field span-2"><label for="task-notes">En liten hj&auml;lp p&aring; v&auml;gen <span>(valfritt)</span></label><textarea id="task-notes" name="notes" maxlength="600" placeholder="Till exempel: B&#246;rja med att st&#228;lla in tallrikarna.">{{ form.notes or '' }}</textarea></div><div class="field"><label for="end-date">Sista datum <span>(valfritt)</span></label><input name="end_date" id="end-date" type="date" value="{{ form.end_date or '' }}"></div></div><p class="field-help">Veckoscheman utg&aring;r fr&aring;n f&ouml;rsta datumets veckodag. M&aring;nadsscheman anv&auml;nder samma datum, eller m&aring;nadens sista dag om datumet saknas. F&ouml;rdelningen r&auml;knar &auml;ven redan avklarat arbete under veckan.</p>{% if edit %}<p class="field-help">&Auml;ndringen g&auml;ller oklara uppgifter fr&aring;n idag och fram&aring;t. Avklarade uppgifter och &auml;ldre historik &auml;ndras inte.</p>{% endif %}<div class="form-actions"><button class="button" type="submit">{{ icon('check') }} Spara {{ 'schema' if edit else 'uppgift' }}</button>{% if edit %}<a href="/admin?tab=tasks" class="text-button">Avbryt</a>{% endif %}</div></form>{% else %}<p>Skapa minst en person innan du l&auml;gger till uppgifter.</p><a class="button" href="/admin?tab=people">Till personer {{ icon('arrow') }}</a>{% endif %}</section>
+<section class="admin-panel"><div class="section-heading"><h2>Era scheman <span>{{ templates|length }}</span></h2><form method="post" action="/admin/regenerate">{{ token() }}<button class="chip" type="submit">{{ icon('refresh') }} Kontrollera</button></form></div>{% for t in templates %}<article class="schedule-row"><span class="schedule-symbol">{{ icon('repeat' if t.recurrence!='once' else 'tasks') }}</span><div><h3>{{ t.title }}</h3><p>{{ recurrences.get(t.recurrence,t.recurrence) }} &middot; {{ t.difficulty }}p &middot; {{ t.fixed_user_name if t.assignment_mode=='fixed' else 'Automatisk' }}</p><small>Fr&aring;n {{ t.start_date }}{% if t.end_date %} till {{ t.end_date }}{% endif %}</small></div><a href="/admin?tab=tasks&amp;edit={{ t.id }}#task-editor" class="icon-button" aria-label="Redigera {{ t.title }}">{{ icon('edit') }}</a><form method="post" action="/admin/template/{{ t.id }}/delete" data-confirm="Avsluta schemat? Oklara tillf&#228;llen tas bort fr&#229;n listorna. Historiken sparas.">{{ token() }}<button class="icon-button danger" type="submit" aria-label="Avsluta {{ t.title }}">{{ icon('close') }}</button></form></article>{% else %}<p>Inga scheman &auml;nnu.</p>{% endfor %}</section>
+{% elif active_tab=='settings' %}
+<form method="post" action="/admin/settings" class="settings-form">{{ token() }}<input type="hidden" name="section" value="settings">
+<section class="admin-panel"><p class="eyebrow">G&ouml;r det till ert</p><h2>Hemma hos er</h2><label for="house-name">Namn p&aring; startsidan</label><input id="house-name" name="house_name" value="{{ draft.get('house_name',settings.house_name) }}" maxlength="50" required><div class="palette"><i></i><i></i><i></i><i></i><i></i><span>Sand &middot; salvia &middot; terrakotta &middot; bl&auml;ck</span></div><label class="switch-row"><span><strong>Sm&aring; bel&ouml;ningar</strong><small>{{ badge_total }} m&auml;rken, varierade h&auml;lsningar och en egen samling.</small></span><input type="checkbox" name="rewards_enabled" {% if settings.rewards_enabled=='1' %}checked{% endif %}></label></section>
+<section class="admin-panel"><h2>{{ icon('moon') }} Sk&auml;rm &amp; nattvila</h2><label for="idle">Vila efter inaktivitet</label><div class="inline-field"><input id="idle" type="number" name="idle_minutes" value="{{ draft.get('idle_minutes',settings.idle_minutes) }}" min="1" max="120" required><span>minuter</span></div><label class="switch-row"><span><strong>Animerad sk&auml;rmsl&auml;ckare</strong><small>En lugn nattstad med r&ouml;rliga bilar, stj&auml;rnor och flyg.</small></span><input type="checkbox" name="screensaver_enabled" {% if settings.screensaver_enabled=='1' %}checked{% endif %}></label><label class="switch-row"><span><strong>Svart p&aring; natten</strong><small>Ers&auml;tter animationen efter samma inaktivitetstid.</small></span><input type="checkbox" name="night_enabled" {% if settings.night_enabled=='1' %}checked{% endif %}></label><div class="form-grid"><div class="field"><label for="night-start">Natten b&ouml;rjar</label><input id="night-start" name="night_start" type="time" value="{{ draft.get('night_start',settings.night_start) }}" required></div><div class="field"><label for="night-end">Morgonen b&ouml;rjar</label><input id="night-end" name="night_end" type="time" value="{{ draft.get('night_end',settings.night_end) }}" required></div></div><p class="field-help">Tryck en g&aring;ng f&ouml;r att v&auml;cka. Nattl&auml;get g&ouml;r bilden svart &mdash; det st&auml;nger inte av LCD-sk&auml;rmens bakgrundsbelysning.</p></section>
+<section class="admin-panel"><h2>{{ icon('partly') }} V&auml;dret d&auml;r ni bor</h2><label for="location-query">S&ouml;k en ort</label><div class="location-search"><input id="location-query" placeholder="Till exempel Bor&#229;s" autocomplete="off"><button type="button" id="location-search" class="button secondary">S&ouml;k</button></div><div id="location-results" role="status"></div><label for="weather-name">Visat platsnamn</label><input id="weather-name" name="weather_name" value="{{ draft.get('weather_name',settings.weather_name) }}" maxlength="50" required><div class="form-grid"><div class="field"><label for="weather-lat">Latitud</label><input id="weather-lat" name="weather_lat" inputmode="decimal" value="{{ draft.get('weather_lat',settings.weather_lat) }}" required></div><div class="field"><label for="weather-lon">Longitud</label><input id="weather-lon" name="weather_lon" inputmode="decimal" value="{{ draft.get('weather_lon',settings.weather_lon) }}" required></div></div><p class="field-help">Prognosen fr&aring;n Open-Meteo uppdateras ungef&auml;r var 15:e minut. Bara v&auml;der och orts&ouml;kning beh&ouml;ver internet.</p></section>
+<section class="admin-panel"><h2>{{ icon('lock') }} Lite extra lugn</h2><p>Adminpanelen &auml;r {{ 'PIN-skyddad' if settings.pin_enabled else '&#246;ppen p&#229; hemn&#228;tverket'|safe }}.</p><label for="new-pin">{{ 'Byt PIN' if settings.pin_enabled else 'Aktivera admin-PIN' }} <span>(valfritt)</span></label><input id="new-pin" name="new_pin" type="password" inputmode="numeric" autocomplete="new-password" pattern="[0-9]{6,12}" minlength="6" maxlength="12" placeholder="6&#8211;12 siffror, tomt = of&#246;r&#228;ndrat">{% if settings.pin_enabled %}<label class="check-label"><input type="checkbox" name="remove_pin"> Ta bort nuvarande PIN</label>{% endif %}<p class="field-help">PIN begr&auml;nsar admin&aring;tkomst men &auml;r inte kryptering. Anv&auml;nd bara ett betrott hemn&auml;tverk. &Ouml;ppna inte port 5000 mot internet.</p></section>
+<div class="save-bar"><span>&Auml;ndringar syns automatiskt p&aring; displayen.</span><button class="button" type="submit">{{ icon('check') }} Spara inst&auml;llningar</button></div></form>
+<section class="admin-panel system-panel"><h2>Data &amp; system</h2><div><span>Version</span><strong>{{ version }} &middot; {{ release }}</strong></div><div><span>Databas</span><strong>Lokal SQLite</strong></div><form method="post" action="/admin/backup">{{ token() }}<button class="button secondary" type="submit">{{ icon('download') }} H&auml;mta s&auml;kerhetskopia</button></form><p class="field-help">Sparar profiler, uppgifter, m&auml;rken och inst&auml;llningar i en separat SQLite-fil. F&ouml;rvara den privat.</p>{% if settings.pin_enabled %}<form method="post" action="/admin/logout">{{ token() }}<button class="text-button" type="submit">L&aring;s adminpanelen</button></form>{% endif %}</section>
+{% else %}<p>V&auml;lj en flik i kontrollpanelen.</p>{% endif %}
+</main>{% endblock %}

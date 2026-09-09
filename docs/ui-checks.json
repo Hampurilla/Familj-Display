@@ -1,0 +1,118 @@
+[
+  [
+    "Home fits 1280x720",
+    true
+  ],
+  [
+    "Home four profiles",
+    true
+  ],
+  [
+    "Live update without page reload",
+    true
+  ],
+  [
+    "Screensaver preview starts",
+    true
+  ],
+  [
+    "Active saver switches to night",
+    true
+  ],
+  [
+    "One touch wakes night screen",
+    true
+  ],
+  [
+    "Home no JS errors",
+    true
+  ],
+  [
+    "Profile horizontal overflow absent",
+    true
+  ],
+  [
+    "Completion produces reward",
+    true
+  ],
+  [
+    "Completion updates task list",
+    true
+  ],
+  [
+    "Profile no JS errors",
+    true
+  ],
+  [
+    "All 144 badge tiles render",
+    true
+  ],
+  [
+    "Owned badge filter works",
+    true
+  ],
+  [
+    "Collection no JS errors",
+    true
+  ],
+  [
+    "Mobile admin no horizontal overflow",
+    true
+  ],
+  [
+    "Mobile admin no screensaver",
+    true
+  ],
+  [
+    "Admin draft survives live change",
+    true
+  ],
+  [
+    "Admin change notice visible",
+    true
+  ],
+  [
+    "Mobile admin no JS errors",
+    true
+  ],
+  [
+    "Mobile overview no overflow",
+    true
+  ],
+  [
+    "Mobile profile collection link visible",
+    true
+  ],
+  [
+    "Mobile profile no overflow",
+    true
+  ],
+  [
+    "Mobile profile no JS errors",
+    true
+  ],
+  [
+    "Idle automatically starts after simulated 16 minutes",
+    true
+  ],
+  [
+    "Wake tap not passed through to profile link",
+    true
+  ],
+  [
+    "Wake stops automatic saver",
+    true
+  ],
+  [
+    "Idle/wake no JavaScript errors",
+    true
+  ],
+  [
+    "Scroll gesture does not complete task",
+    true
+  ],
+  [
+    "Touch gesture no JavaScript errors",
+    true
+  ]
+]

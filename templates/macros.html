@@ -1,0 +1,10 @@
+{% macro icon(name, cls='') -%}<svg class="icon {{ cls }}" aria-hidden="true"><use href="#{{ name }}"></use></svg>{%- endmacro %}
+{% macro token() -%}<input type="hidden" name="_csrf" value="{{ csrf() }}">{%- endmacro %}
+{% macro task_row(task, first=false) %}
+<form method="post" action="/task/{{ task.id }}/toggle" class="task-row {% if task.completed %}is-done{% endif %} {% if first %}first-task{% endif %}" data-task="{{ task.id }}">
+  {{ token() }}<input type="hidden" name="completed" value="{{ 0 if task.completed else 1 }}">
+  <button class="task-check" type="submit" aria-label="{{ 'Markera som inte klar' if task.completed else 'Markera som klar' }}: {{ task.title }}" data-set-complete="{{ 0 if task.completed else 1 }}">{{ icon('check') }}</button>
+  <div class="task-copy"><strong>{{ task.title }}</strong><div class="task-meta"><span {% if task.due_date < today and not task.completed %}class="late"{% endif %}>{{ task.due_date|svdate }}{% if task.due_date < today and not task.completed %} &middot; kvar sedan tidigare{% endif %}</span>{% if task.notes %}<span class="task-notes">{{ task.notes }}</span>{% endif %}</div></div>
+  <span class="point-tag">{{ task.difficulty }}<small>p</small></span>
+</form>
+{% endmacro %}

@@ -1,0 +1,17 @@
+[Unit]
+Description=Stage and validate Familj Display update
+Wants=network-online.target
+After=network-online.target
+Before=home-display.service
+
+[Service]
+Type=oneshot
+User=admin
+WorkingDirectory=/home/admin/home-display
+ExecStart=/bin/bash /home/admin/home-display/update.sh --boot
+TimeoutStartSec=600
+Environment=GIT_TERMINAL_PROMPT=0
+UMask=0077
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,63 @@
+test_admin_pin (test_flask.FlaskTests.test_admin_pin) ... skipped 'Flask is not installed in this environment'
+test_backup (test_flask.FlaskTests.test_backup) ... skipped 'Flask is not installed in this environment'
+test_create_profile_and_task (test_flask.FlaskTests.test_create_profile_and_task) ... skipped 'Flask is not installed in this environment'
+test_csrf_rejects_untrusted_posts (test_flask.FlaskTests.test_csrf_rejects_untrusted_posts) ... skipped 'Flask is not installed in this environment'
+test_idempotent_complete (test_flask.FlaskTests.test_idempotent_complete) ... skipped 'Flask is not installed in this environment'
+test_invalid_input_shows_error_not_500 (test_flask.FlaskTests.test_invalid_input_shows_error_not_500) ... skipped 'Flask is not installed in this environment'
+test_no_api_cache (test_flask.FlaskTests.test_no_api_cache) ... skipped 'Flask is not installed in this environment'
+test_pages (test_flask.FlaskTests.test_pages) ... skipped 'Flask is not installed in this environment'
+test_xss_escaped (test_flask.FlaskTests.test_xss_escaped) ... skipped 'Flask is not installed in this environment'
+test_existing_collection_preserved (test_migrations.MigrationTests.test_existing_collection_preserved) ... ok
+test_newer_schema_is_refused (test_migrations.MigrationTests.test_newer_schema_is_refused) ... ok
+test_v1_existing_users_tasks (test_migrations.MigrationTests.test_v1_existing_users_tasks) ... ok
+test_v2_existing_users_tasks_settings (test_migrations.MigrationTests.test_v2_existing_users_tasks_settings) ... ok
+test_v3_existing_users_tasks_night_settings (test_migrations.MigrationTests.test_v3_existing_users_tasks_night_settings) ... ok
+test_allowed_people (test_store.StoreTests.test_allowed_people) ... ok
+test_archive_fixed_work_pauses (test_store.StoreTests.test_archive_fixed_work_pauses) ... ok
+test_archive_reassigns_auto_work (test_store.StoreTests.test_archive_reassigns_auto_work) ... ok
+test_backup_contains_committed_data (test_store.StoreTests.test_backup_contains_committed_data) ... ok
+test_bad_database_not_replaced (test_store.StoreTests.test_bad_database_not_replaced) ... ok
+test_biweekly_calendar_anchor (test_store.StoreTests.test_biweekly_calendar_anchor) ... ok
+test_complete_is_idempotent (test_store.StoreTests.test_complete_is_idempotent) ... ok
+test_completed_work_counts_for_fairness (test_store.StoreTests.test_completed_work_counts_for_fairness) ... ok
+test_concurrent_completions_one_reward (test_store.StoreTests.test_concurrent_completions_one_reward) ... ok
+test_daily_generation_is_idempotent (test_store.StoreTests.test_daily_generation_is_idempotent) ... ok
+test_edit_does_not_rewrite_completed (test_store.StoreTests.test_edit_does_not_rewrite_completed) ... ok
+test_end_date (test_store.StoreTests.test_end_date) ... ok
+test_fresh_database (test_store.StoreTests.test_fresh_database) ... ok
+test_future_cannot_be_completed (test_store.StoreTests.test_future_cannot_be_completed) ... ok
+test_history_not_counted_forever (test_store.StoreTests.test_history_not_counted_forever) ... ok
+test_invalid_dates_and_points (test_store.StoreTests.test_invalid_dates_and_points) ... ok
+test_invalid_settings_rejected (test_store.StoreTests.test_invalid_settings_rejected) ... ok
+test_midnight_scheduler (test_store.StoreTests.test_midnight_scheduler) ... ok
+test_month_end_no_drift (test_store.StoreTests.test_month_end_no_drift) ... ok
+test_overdue_completed_today_counts_today (test_store.StoreTests.test_overdue_completed_today_counts_today) ... ok
+test_partial_settings_preserve_night (test_store.StoreTests.test_partial_settings_preserve_night) ... ok
+test_pause_preserves_history (test_store.StoreTests.test_pause_preserves_history) ... ok
+test_pin_hash_not_public (test_store.StoreTests.test_pin_hash_not_public) ... ok
+test_reopen_preserves_data_and_badges (test_store.StoreTests.test_reopen_preserves_data_and_badges) ... ok
+test_root_legacy_people_migration (test_store.StoreTests.test_root_legacy_people_migration) ... ok
+test_share_weights (test_store.StoreTests.test_share_weights) ... ok
+test_undo_does_not_farm_rewards (test_store.StoreTests.test_undo_does_not_farm_rewards) ... ok
+test_unfinished_overdue_visible (test_store.StoreTests.test_unfinished_overdue_visible) ... ok
+test_user_validation (test_store.StoreTests.test_user_validation) ... ok
+test_weekly_date (test_store.StoreTests.test_weekly_date) ... ok
+test_admin_tabs (test_templates.TemplateTests.test_admin_tabs) ... ok
+test_edit_template (test_templates.TemplateTests.test_edit_template) ... ok
+test_empty_state_templates (test_templates.TemplateTests.test_empty_state_templates) ... ok
+test_escapes_profile_and_note (test_templates.TemplateTests.test_escapes_profile_and_note) ... ok
+test_full_pages_strict_undefined (test_templates.TemplateTests.test_full_pages_strict_undefined) ... ok
+test_partials_have_no_duplicate_document (test_templates.TemplateTests.test_partials_have_no_duplicate_document) ... ok
+test_references_screensaver_on_display_only (test_templates.TemplateTests.test_references_screensaver_on_display_only) ... ok
+test_corrupt_cache_is_ignored (test_weather.WeatherTests.test_corrupt_cache_is_ignored) ... ok
+test_failure_keeps_previous_data_marked_stale (test_weather.WeatherTests.test_failure_keeps_previous_data_marked_stale) ... Weather unavailable; serving the last saved forecast, if any.
+ok
+test_initial_offline_returns_placeholder (test_weather.WeatherTests.test_initial_offline_returns_placeholder) ... ok
+test_location_change_does_not_show_other_location (test_weather.WeatherTests.test_location_change_does_not_show_other_location) ... ok
+test_success_cached_on_disk (test_weather.WeatherTests.test_success_cached_on_disk) ... ok
+test_weather_conditions (test_weather.WeatherTests.test_weather_conditions) ... ok
+
+----------------------------------------------------------------------
+Ran 57 tests in 1.209s
+
+OK (skipped=9)
