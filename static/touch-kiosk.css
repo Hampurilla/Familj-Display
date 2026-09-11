@@ -1,0 +1,77 @@
+/* Display-only rules. Never loaded on /admin or /admin/login. */
+html.kiosk-touch-page {
+  min-height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scroll-behavior: auto;
+  scrollbar-width: none;
+  scrollbar-gutter: auto;
+  overscroll-behavior-x: none;
+}
+html.kiosk-touch-page::-webkit-scrollbar,
+.kiosk-touch-page body.display-page::-webkit-scrollbar,
+.kiosk-touch-page body.display-page *::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+.kiosk-touch-page body.display-page,
+.kiosk-touch-page body.display-page * {
+  scrollbar-width: none;
+  scrollbar-gutter: auto;
+}
+.kiosk-touch-page body.display-page {
+  min-height: 100vh;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+  touch-action: pan-y pinch-zoom;
+  overscroll-behavior-y: contain;
+}
+.kiosk-touch-page body.display-page .app-shell { min-height: 100vh; }
+.kiosk-touch-page body.display-page :where(main,section,article,aside,header,footer,a,button,summary) {
+  touch-action: pan-y pinch-zoom;
+}
+.kiosk-touch-page body.display-page :where(a,img,svg,[draggable]) {
+  -webkit-user-drag: none;
+  -webkit-touch-callout: none;
+}
+/* Explicit escape hatches for real form controls; these are not drag handles. */
+.kiosk-touch-page body.display-page :where(input,textarea,select,[contenteditable]:not([contenteditable="false"]),[data-no-drag]) {
+  user-select: text;
+  -webkit-user-select: text;
+  touch-action: auto;
+}
+/* Wrap filters: no hidden horizontal strip which has to be grabbed separately. */
+.kiosk-touch-page .collection-toolbar {
+  flex-wrap: wrap;
+  overflow: visible;
+}
+.kiosk-touch-page .screensaver { touch-action: none; }
+.kiosk-touch-page .reward-card {
+  max-height: calc(100vh - 40px);
+  max-height: calc(100dvh - 40px);
+  overflow-y: auto;
+  scroll-behavior: auto;
+  overscroll-behavior: contain;
+}
+.kiosk-touch-page .kiosk-dragging,
+.kiosk-touch-page .kiosk-dragging * { cursor: grabbing !important; }
+.kiosk-touch-page .touch-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px 20px;
+  margin-top: 8px;
+  padding: 8px 0 0;
+  color: var(--muted, #6f766b);
+  font-size: 11px;
+}
+.kiosk-touch-page .touch-footer a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}

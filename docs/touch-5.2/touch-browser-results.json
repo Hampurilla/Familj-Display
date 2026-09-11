@@ -1,0 +1,396 @@
+{
+  "browser": "Chromium",
+  "version": "144.0.7559.96",
+  "method": "Headless Chromium; real mouse and CDP touch input; local rendered templates; in-memory fetch adapter, not Flask",
+  "physical_pi_tested": false,
+  "results": [
+    {
+      "name": "no scrollbars on home",
+      "passed": true,
+      "detail": {
+        "version": "5.2.0",
+        "pointerType": "none",
+        "drags": 0,
+        "suppressedClicks": 0,
+        "lastDragDistance": 0,
+        "scrollY": 0,
+        "maxScrollY": 568,
+        "dragging": false,
+        "nativeGesture": false,
+        "scrollbarWidth": "none",
+        "scrollbarGutterPx": 0,
+        "nativeTouchAction": "pan-y pinch-zoom",
+        "mouseDragEnabled": true
+      }
+    },
+    {
+      "name": "no scrollbars on user",
+      "passed": true,
+      "detail": {
+        "version": "5.2.0",
+        "pointerType": "none",
+        "drags": 0,
+        "suppressedClicks": 0,
+        "lastDragDistance": 0,
+        "scrollY": 0,
+        "maxScrollY": 2529,
+        "dragging": false,
+        "nativeGesture": false,
+        "scrollbarWidth": "none",
+        "scrollbarGutterPx": 0,
+        "nativeTouchAction": "pan-y pinch-zoom",
+        "mouseDragEnabled": true
+      }
+    },
+    {
+      "name": "no scrollbars on badges",
+      "passed": true,
+      "detail": {
+        "version": "5.2.0",
+        "pointerType": "none",
+        "drags": 0,
+        "suppressedClicks": 0,
+        "lastDragDistance": 0,
+        "scrollY": 0,
+        "maxScrollY": 2671,
+        "dragging": false,
+        "nativeGesture": false,
+        "scrollbarWidth": "none",
+        "scrollbarGutterPx": 0,
+        "nativeTouchAction": "pan-y pinch-zoom",
+        "mouseDragEnabled": true
+      }
+    },
+    {
+      "name": "mouse-emulated finger drags background: home",
+      "passed": true,
+      "detail": {
+        "version": "5.2.0",
+        "pointerType": "mouse",
+        "drags": 1,
+        "suppressedClicks": 1,
+        "lastDragDistance": 380,
+        "scrollY": 378,
+        "maxScrollY": 568,
+        "dragging": false,
+        "nativeGesture": false,
+        "scrollbarWidth": "none",
+        "scrollbarGutterPx": 0,
+        "nativeTouchAction": "pan-y pinch-zoom",
+        "mouseDragEnabled": true
+      }
+    },
+    {
+      "name": "mouse-emulated finger drags background: user",
+      "passed": true,
+      "detail": {
+        "version": "5.2.0",
+        "pointerType": "mouse",
+        "drags": 1,
+        "suppressedClicks": 1,
+        "lastDragDistance": 380,
+        "scrollY": 378,
+        "maxScrollY": 2529,
+        "dragging": false,
+        "nativeGesture": false,
+        "scrollbarWidth": "none",
+        "scrollbarGutterPx": 0,
+        "nativeTouchAction": "pan-y pinch-zoom",
+        "mouseDragEnabled": true
+      }
+    },
+    {
+      "name": "mouse-emulated finger drags background: badges",
+      "passed": true,
+      "detail": {
+        "version": "5.2.0",
+        "pointerType": "mouse",
+        "drags": 1,
+        "suppressedClicks": 1,
+        "lastDragDistance": 380,
+        "scrollY": 378,
+        "maxScrollY": 2671,
+        "dragging": false,
+        "nativeGesture": false,
+        "scrollbarWidth": "none",
+        "scrollbarGutterPx": 0,
+        "nativeTouchAction": "pan-y pinch-zoom",
+        "mouseDragEnabled": true
+      }
+    },
+    {
+      "name": "native touch drags background: home",
+      "passed": true,
+      "detail": {
+        "version": "5.2.0",
+        "pointerType": "touch",
+        "drags": 1,
+        "suppressedClicks": 0,
+        "lastDragDistance": 27,
+        "scrollY": 365,
+        "maxScrollY": 568,
+        "dragging": false,
+        "nativeGesture": false,
+        "scrollbarWidth": "none",
+        "scrollbarGutterPx": 0,
+        "nativeTouchAction": "pan-y pinch-zoom",
+        "mouseDragEnabled": true
+      }
+    },
+    {
+      "name": "native touch drags background: user",
+      "passed": true,
+      "detail": {
+        "version": "5.2.0",
+        "pointerType": "touch",
+        "drags": 1,
+        "suppressedClicks": 0,
+        "lastDragDistance": 27,
+        "scrollY": 427,
+        "maxScrollY": 2529,
+        "dragging": false,
+        "nativeGesture": false,
+        "scrollbarWidth": "none",
+        "scrollbarGutterPx": 0,
+        "nativeTouchAction": "pan-y pinch-zoom",
+        "mouseDragEnabled": true
+      }
+    },
+    {
+      "name": "native touch drags background: badges",
+      "passed": true,
+      "detail": {
+        "version": "5.2.0",
+        "pointerType": "touch",
+        "drags": 1,
+        "suppressedClicks": 0,
+        "lastDragDistance": 27,
+        "scrollY": 365,
+        "maxScrollY": 2671,
+        "dragging": false,
+        "nativeGesture": false,
+        "scrollbarWidth": "none",
+        "scrollbarGutterPx": 0,
+        "nativeTouchAction": "pan-y pinch-zoom",
+        "mouseDragEnabled": true
+      }
+    },
+    {
+      "name": "mouse drag over profile never opens link",
+      "passed": true,
+      "detail": {
+        "version": "5.2.0",
+        "pointerType": "mouse",
+        "drags": 1,
+        "suppressedClicks": 1,
+        "lastDragDistance": 230,
+        "scrollY": 224,
+        "maxScrollY": 568,
+        "dragging": false,
+        "nativeGesture": false,
+        "scrollbarWidth": "none",
+        "scrollbarGutterPx": 0,
+        "nativeTouchAction": "pan-y pinch-zoom",
+        "mouseDragEnabled": true
+      }
+    },
+    {
+      "name": "native drag over profile never opens link",
+      "passed": true,
+      "detail": {
+        "version": "5.2.0",
+        "pointerType": "touch",
+        "drags": 1,
+        "suppressedClicks": 0,
+        "lastDragDistance": 16,
+        "scrollY": 250,
+        "maxScrollY": 568,
+        "dragging": false,
+        "nativeGesture": false,
+        "scrollbarWidth": "none",
+        "scrollbarGutterPx": 0,
+        "nativeTouchAction": "pan-y pinch-zoom",
+        "mouseDragEnabled": true
+      }
+    },
+    {
+      "name": "mouse drag on completion button never completes task",
+      "passed": true,
+      "detail": {
+        "version": "5.2.0",
+        "pointerType": "mouse",
+        "drags": 1,
+        "suppressedClicks": 1,
+        "lastDragDistance": 170,
+        "scrollY": 168,
+        "maxScrollY": 2529,
+        "dragging": false,
+        "nativeGesture": false,
+        "scrollbarWidth": "none",
+        "scrollbarGutterPx": 0,
+        "nativeTouchAction": "pan-y pinch-zoom",
+        "mouseDragEnabled": true
+      }
+    },
+    {
+      "name": "native drag on completion button never completes task",
+      "passed": true,
+      "detail": {
+        "version": "5.2.0",
+        "pointerType": "touch",
+        "drags": 1,
+        "suppressedClicks": 0,
+        "lastDragDistance": 24,
+        "scrollY": 177,
+        "maxScrollY": 2529,
+        "dragging": false,
+        "nativeGesture": false,
+        "scrollbarWidth": "none",
+        "scrollbarGutterPx": 0,
+        "nativeTouchAction": "pan-y pinch-zoom",
+        "mouseDragEnabled": true
+      }
+    },
+    {
+      "name": "profile mouse tap still activates",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "profile native tap still activates",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "fresh tap immediately after drag is not swallowed",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "tiny finger movement remains a tap",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "drag downward scrolls back up",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "bottom boundary stops and reverses correctly",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "mouse wheel remains usable",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "keyboard Enter still activates links",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "mouse momentum glides then stops on new contact",
+      "passed": true,
+      "detail": {
+        "atRelease": 320,
+        "after140ms": 437
+      }
+    },
+    {
+      "name": "reduced motion disables simulated momentum",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "inner scroll list and parent boundary chaining",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "live-refreshed profile cards are also draggable",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "live updates wait until finger is released",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "screensaver wake consumes only the wake gesture",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "mobile admin has no kiosk CSS or drag handlers",
+      "passed": true,
+      "detail": {
+        "touchModuleLoaded": false
+      }
+    },
+    {
+      "name": "mobile admin keeps normal native touch scroll",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "admin text selection remains available",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "login also excluded from kiosk mode",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "built-in diagnostic distinguishes dragging from tapping",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "normal mouse tap completes a task and shows reward",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "normal native tap completes a task and shows reward",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "native finger held after scroll also pauses live updates",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "1280x720 layout fits without horizontal overflow",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "800x480 layout scrolls without side scrollbar",
+      "passed": true,
+      "detail": {
+        "version": "5.2.0",
+        "pointerType": "none",
+        "drags": 0,
+        "suppressedClicks": 0,
+        "lastDragDistance": 0,
+        "scrollY": 0,
+        "maxScrollY": 2552,
+        "dragging": false,
+        "nativeGesture": false,
+        "scrollbarWidth": "none",
+        "scrollbarGutterPx": 0,
+        "nativeTouchAction": "pan-y pinch-zoom",
+        "mouseDragEnabled": true
+      }
+    }
+  ],
+  "passed": 37,
+  "failed": 0
+}

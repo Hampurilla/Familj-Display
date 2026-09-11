@@ -1,10 +1,12 @@
 {% from 'macros.html' import icon, token with context %}
-<!doctype html><html lang="sv"><head>
+{% set touch_display = boot.view in ['home','user','badges'] %}
+<!doctype html><html lang="sv"{% if touch_display %} class="kiosk-touch-page" data-touch-version="5.2.0"{% endif %}><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#f2efe6"><meta name="description" content="Familjens lokala plats f&#246;r en lite lugnare vardag.">
 <title>{% block title %}Hemma &middot; Familj Display{% endblock %}</title>
 <link rel="icon" href="{{ asset('favicon.svg') }}" type="image/svg+xml">
 <link rel="stylesheet" href="{{ asset('style.css') }}">
+{% if touch_display %}<link rel="stylesheet" href="{{ asset('touch-kiosk.css') }}">{% endif %}
 </head><body class="{{ 'admin-page' if boot.view in ['admin','login'] else 'display-page' }}" data-view="{{ boot.view }}">
 <a class="skip-link" href="#main">Till inneh&aring;llet</a>
 {% include '_icons.html' %}
@@ -14,6 +16,7 @@
   {% if boot.view not in ['admin','login'] %}<button class="icon-button" id="preview-saver" title="Vila sk&#228;rmen" aria-label="Vila sk&#228;rmen">{{ icon('moon') }}</button><a class="icon-button" href="/admin" title="Kontrollpanel" aria-label="Kontrollpanel">{{ icon('settings') }}</a>{% else %}<a class="text-button" href="/">{{ icon('home') }}<span>Display</span></a>{% endif %}</div>
 </header>
 {% block content %}{% endblock %}
+{% if touch_display %}<footer class="touch-footer"><span>Dra upp&#229;t eller ned&#229;t f&#246;r att bl&#228;ddra.</span><a href="{{ asset('touch-test.html') }}">Touch 5.2 &middot; testa sk&#228;rmen</a></footer>{% endif %}
 </div>
 <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
 {% if boot.view not in ['admin','login','error'] %}
@@ -24,6 +27,7 @@
 {% endif %}
 <script id="boot" type="application/json">{{ boot|tojson }}</script>
 {% if boot.view not in ['admin','login','error'] %}<script src="{{ asset('saver.js') }}" defer></script>{% endif %}
+{% if touch_display %}<script src="{{ asset('touch-kiosk.js') }}" defer></script>{% endif %}
 <script src="{{ asset('app.js') }}" defer></script>
 {% if boot.view=='admin' %}<script src="{{ asset('admin.js') }}" defer></script>{% endif %}
 </body></html>

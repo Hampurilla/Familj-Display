@@ -64,6 +64,7 @@
   }
   async function refreshState(force=false) {
     if(statePromise)return statePromise;
+    if(!isAdmin && window.HemmaTouchScroll?.isBusy())return;
     if((busy||rewardActive)&&!force)return;
     if(!force && Date.now()-lastInput<800)return;
     statePromise=(async()=>{
@@ -77,7 +78,10 @@
           if(!saverActive&&!busy&&!rewardActive){write('hemma-activity',lastActivity);location.reload();return;}
         }
         if(isAdmin){if(d.version!==knownVersion)document.getElementById('admin-update-notice')?.removeAttribute('hidden');}
-        else if(!busy&&!rewardActive) replaceLive(d.html);
+        else if(!busy&&!rewardActive) {
+          if(window.HemmaTouchScroll?.isBusy())return;
+          replaceLive(d.html);
+        }
         knownVersion=d.version;
         evaluateIdle();
       }catch(e){
@@ -162,7 +166,7 @@
     if(boot.view!=='home')location.assign('/');else refreshState(true);
   }
   function evaluateIdle(){
-    if(isAdmin||busy||rewardActive||!document.getElementById('screensaver'))return;
+    if(isAdmin||busy||rewardActive||window.HemmaTouchScroll?.isBusy()||!document.getElementById('screensaver'))return;
     if(saverActive){
       const black=nightWindow();const overlay=document.getElementById('screensaver');
       if(black!==overlay.classList.contains('is-night')){overlay.classList.toggle('is-night',black);if(black)saver?.stop();else saver?.start();}
@@ -174,7 +178,9 @@
   let pointerStart=null;
   window.addEventListener('pointerdown',e=>{
     if(saverActive){e.preventDefault();e.stopImmediatePropagation();suppressUntil=Date.now()+700;wake();return;}
-    pointerStart={x:e.clientX,y:e.clientY};lastActivity=lastInput=Date.now();write('hemma-activity',lastActivity);
+    if(!isAdmin)suppressUntil=0;
+    pointerStart=(!window.HemmaTouchScroll)?{x:e.clientX,y:e.clientY}:null;
+    lastActivity=lastInput=Date.now();write('hemma-activity',lastActivity);
   },true);
   window.addEventListener('pointermove',e=>{
     if(!saverActive&&(e.pointerType==='mouse'||e.buttons)){lastActivity=Date.now();write('hemma-activity',lastActivity);}
@@ -190,6 +196,9 @@
   window.addEventListener('scroll',()=>{lastInput=Date.now();},{passive:true});
   document.addEventListener('visibilitychange',()=>{if(document.hidden)saver?.stop();else{if(saverActive&&!nightWindow())saver?.start();refreshState();}});
   async function poll(){await refreshState();setTimeout(poll,boot.poll_ms||3000);}
+  if(['home','user','badges'].includes(boot.view) && !window.HemmaTouchScroll) {
+    toast('Touchmodulen saknas. Kontrollera att alla filer i Touch 5.2 har kopierats.');
+  }
   applyUI();loadWeather();setTimeout(poll,1000);setInterval(updateClock,1000);setInterval(evaluateIdle,1000);
   setInterval(()=>{if(document.querySelector('[data-weather]'))loadWeather();},15000);
 })();
