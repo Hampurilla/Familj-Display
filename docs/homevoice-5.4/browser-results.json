@@ -1,0 +1,112 @@
+{
+  "tests": [
+    {
+      "test": "Enabled profile has read-all and per-task controls",
+      "passed": true
+    },
+    {
+      "test": "Touch engine remains active",
+      "passed": true
+    },
+    {
+      "test": "Scrollbar stays hidden",
+      "passed": true
+    },
+    {
+      "test": "Real Swedish WAV decoded and played in WebAudio",
+      "passed": true
+    },
+    {
+      "test": "Read button did not mark task complete",
+      "passed": true
+    },
+    {
+      "test": "Stop cancels reading",
+      "passed": true
+    },
+    {
+      "test": "Stop has visible feedback",
+      "passed": true
+    },
+    {
+      "test": "Reward speech used actual completed task id",
+      "passed": true
+    },
+    {
+      "test": "Live state update restores voice controls",
+      "passed": true
+    },
+    {
+      "test": "Turning voice off removes controls without reload",
+      "passed": true
+    },
+    {
+      "test": "Other profile has no read controls",
+      "passed": true
+    },
+    {
+      "test": "Voice admin 390 no horizontal overflow",
+      "passed": true
+    },
+    {
+      "test": "Voice admin 390 no kiosk engine",
+      "passed": true
+    },
+    {
+      "test": "Voice admin 390 editable volume works",
+      "passed": true
+    },
+    {
+      "test": "Mobile guide 390 shows canonical verified URL",
+      "passed": true
+    },
+    {
+      "test": "Mobile guide 390 no horizontal overflow",
+      "passed": true
+    },
+    {
+      "test": "Mobile guide 390 address unchanged on refresh",
+      "passed": true
+    },
+    {
+      "test": "Mobile guide 390 manifest has relative origin",
+      "passed": true
+    },
+    {
+      "test": "Voice admin 1280 no horizontal overflow",
+      "passed": true
+    },
+    {
+      "test": "Voice admin 1280 no kiosk engine",
+      "passed": true
+    },
+    {
+      "test": "Voice admin 1280 editable volume works",
+      "passed": true
+    },
+    {
+      "test": "Mobile guide 1280 shows canonical verified URL",
+      "passed": true
+    },
+    {
+      "test": "Mobile guide 1280 no horizontal overflow",
+      "passed": true
+    },
+    {
+      "test": "Mobile guide 1280 address unchanged on refresh",
+      "passed": true
+    },
+    {
+      "test": "Mobile guide 1280 manifest has relative origin",
+      "passed": true
+    },
+    {
+      "test": "No browser JavaScript exceptions",
+      "passed": true
+    }
+  ],
+  "passed": 26,
+  "failed": 0,
+  "browser": "144.0.7559.96",
+  "method": "Jinja + production Store/TTS fetch adapter; NOT Flask; no physical speaker or real Tailscale"
+}

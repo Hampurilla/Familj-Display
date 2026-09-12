@@ -1,0 +1,24 @@
+{% extends 'base.html' %}{% block title %}Uppl&auml;sning &middot; Hemma{% endblock %}
+{% block content %}
+<main id="main" class="admin-main" data-voice-admin>
+<a class="text-button" href="/admin?tab=people">&larr; Till kontrollpanelen</a>
+<header class="voice-admin-title"><p class="eyebrow">En sak i taget. Nu med r&ouml;st.</p><h1>Lyssna p&aring; din dag.</h1><p>V&auml;lj vilka profiler som f&aring;r l&auml;sknappar. &Ouml;vriga profiler &auml;r tysta.</p></header>
+{% for message in get_flashed_messages() %}<p class="voice-info" role="status">{{ message }}</p>{% endfor %}
+{% if voice_error %}<p class="voice-error" role="alert">{{ voice_error }}</p>{% endif %}
+<div class="voice-info"><strong>{{ voice_engine.message }}</strong><br>R&ouml;sten skapas lokalt p&aring; Raspberryn. Den l&aring;ter lite robotlik. Text skickas inte till n&aring;gon molntj&auml;nst.<br>Ljud spelas p&aring; den enhet d&auml;r du trycker: v&auml;ggdisplayens AUX, eller mobilen n&auml;r du provar h&auml;r.</div>
+<p class="voice-status-note" data-voice-status role="status" aria-live="polite"></p>
+<div class="voice-settings">
+{% for p in voice_users %}<section class="admin-panel">
+<h2>{{ p.name }}</h2>
+<form method="post" action="/admin/speech/{{ p.user_id }}">
+{{ token() }}
+<label class="voice-choice"><input type="checkbox" name="enabled" {% if p.enabled %}checked{% endif %}>Uppl&auml;sning tillg&auml;nglig</label>
+<label class="voice-choice"><input type="checkbox" name="notes" {% if p.notes %}checked{% endif %}>L&auml;s &auml;ven jobbets instruktioner</label>
+<label class="voice-choice"><input type="checkbox" name="rewards" {% if p.rewards %}checked{% endif %}>L&auml;s bel&ouml;ningen efter avbockning</label>
+<div class="voice-fields"><label>Tempo<select name="speed">{% for speed,label in [(110,'Mycket lugnt'),(130,'Lugnt'),(155,'Vanligt'),(180,'Snabbare'),(210,'Snabbt')] %}<option value="{{ speed }}" {% if p.speed==speed %}selected{% endif %}>{{ label }}</option>{% endfor %}</select></label><label>Volym 0&ndash;100 %<input name="volume" type="number" min="0" max="100" step="1" value="{{ p.volume }}" required></label></div>
+<div class="voice-save-row"><button class="button" type="submit">Spara {{ p.name }}</button><button class="button secondary" type="button" data-voice-action="sample" data-voice-user="{{ p.user_id }}">Prova sparad r&ouml;st</button><button class="button secondary" type="button" data-voice-action="stop">Stoppa</button></div>
+</form></section>{% else %}<section class="admin-panel"><p>Skapa en profil i kontrollpanelen f&ouml;rst.</p></section>{% endfor %}
+</div>
+<details class="admin-panel"><summary>Inget ljud fr&aring;n v&auml;ggdisplayen?</summary><p>Koppla h&ouml;gtalaren till Pi:ns 3,5 mm-uttag och v&auml;lj <strong>Headphones / Analog Stereo</strong> i Raspberry Pi OS ljudmeny. Kontrollera att systemvolymen inte &auml;r avst&auml;ngd.</p><p>Spara en aktiverad profil ovan. &Ouml;ppna sedan just den profilen p&aring; v&auml;ggdisplayen och tryck <strong>L&auml;s mina uppgifter</strong>. Att prova i mobilen spelar ljud p&aring; mobilen, inte hemma.</p><p>Pi:ns uttag kan beh&ouml;va en aktiv h&ouml;gtalare/f&ouml;rst&auml;rkare f&ouml;r tillr&auml;cklig volym. Den h&auml;r appen &auml;ndrar inte systemets ljudutg&aring;ng eller volym.</p></details>
+</main>
+{% endblock %}

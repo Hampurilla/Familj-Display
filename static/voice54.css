@@ -1,0 +1,15 @@
+/* No global overflow, touch-action or drag overrides. Admin remains native. */
+.voice-toolbar{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:16px 0 22px;padding:14px;border-radius:18px;background:var(--sage-soft,#e6eddf)}
+.voice-toolbar [data-voice-status]{flex:1 1 230px;font-size:14px;line-height:1.45;color:var(--muted,#53604e)}
+.task-row .voice-button{min-width:60px;min-height:48px;padding:10px;font-size:14px;flex-shrink:0}
+.voice-settings{display:grid;gap:18px}.voice-settings .admin-panel{margin:0}
+.voice-choice{display:flex;gap:12px;align-items:center;padding:10px 0;font-size:16px;line-height:1.4}
+.voice-choice input{width:22px;height:22px;flex:0 0 22px}
+.voice-fields{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0}
+.voice-fields label{display:grid;gap:6px}.voice-fields input,.voice-fields select{min-height:48px;width:100%}
+.voice-save-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px}
+.voice-info{padding:16px;border-radius:16px;background:var(--sage-soft,#e5ecdf);margin:18px 0;line-height:1.6}
+.voice-admin-title{margin:24px 0 10px}.voice-admin-title h1{font-size:clamp(30px,6vw,46px)}
+.voice-status-note{display:block;min-height:1.5em;line-height:1.5;margin:12px 0}
+.voice-error{background:#fbe5da;padding:16px;border-radius:14px;color:#753f2b}
+@media(max-width:550px){.task-row .voice-button{min-width:48px;padding:8px}.voice-fields{grid-template-columns:1fr}.voice-toolbar .button{flex:1}.voice-save-row .button{flex:1}}

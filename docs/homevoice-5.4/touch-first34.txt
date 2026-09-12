@@ -1,0 +1,35 @@
+Chromium 144.0.7559.96
+PASS no scrollbars on home
+PASS no scrollbars on user
+PASS no scrollbars on badges
+PASS mouse-emulated finger drags background: home
+PASS mouse-emulated finger drags background: user
+PASS mouse-emulated finger drags background: badges
+PASS native touch drags background: home
+PASS native touch drags background: user
+PASS native touch drags background: badges
+PASS mouse drag over profile never opens link
+PASS native drag over profile never opens link
+PASS mouse drag on completion button never completes task
+PASS native drag on completion button never completes task
+PASS profile mouse tap still activates
+PASS profile native tap still activates
+PASS fresh tap immediately after drag is not swallowed
+PASS tiny finger movement remains a tap
+PASS drag downward scrolls back up
+PASS bottom boundary stops and reverses correctly
+PASS mouse wheel remains usable
+PASS keyboard Enter still activates links
+PASS mouse momentum glides then stops on new contact
+PASS reduced motion disables simulated momentum
+PASS inner scroll list and parent boundary chaining
+PASS live-refreshed profile cards are also draggable
+PASS live updates wait until finger is released
+PASS screensaver wake consumes only the wake gesture
+PASS mobile admin has no kiosk CSS or drag handlers
+PASS mobile admin keeps normal native touch scroll
+PASS admin text selection remains available
+PASS login also excluded from kiosk mode
+PASS built-in diagnostic distinguishes dragging from tapping
+PASS normal mouse tap completes a task and shows reward
+PASS normal native tap completes a task and shows reward

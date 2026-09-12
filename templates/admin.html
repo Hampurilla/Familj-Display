@@ -2,6 +2,10 @@
 {% block content %}
 <main id="main" class="admin-main"><header class="admin-title"><div><p class="eyebrow">Bakom en lite lugnare vardag</p><h1>Hemma, <em>ordnat.</em></h1></div><a class="button" href="/admin?tab=tasks#task-editor">{{ icon('plus') }} Ny uppgift</a></header>
 <nav class="admin-tabs" aria-label="Kontrollpanel"><a href="/admin?tab=overview" {% if active_tab=='overview' %}aria-current="page"{% endif %}>{{ icon('home') }}<span>&Ouml;versikt</span></a><a href="/admin?tab=tasks" {% if active_tab=='tasks' %}aria-current="page"{% endif %}>{{ icon('tasks') }}<span>Uppgifter</span></a><a href="/admin?tab=people" {% if active_tab=='people' %}aria-current="page"{% endif %}>{{ icon('people') }}<span>Personer</span></a><a href="/admin?tab=settings" {% if active_tab=='settings' %}aria-current="page"{% endif %}>{{ icon('settings') }}<span>Inst&auml;llningar</span></a></nav>
+<!-- FAMILJ_REMOTE_5_3 -->
+<p><a class="text-button" href="/admin/remote">Fj&auml;rr&aring;tkomst &middot; anslut mobil utanf&ouml;r hemmet &rarr;</a></p>
+<!-- FAMILJ_HOMEVOICE_5_4_LINKS -->
+<nav aria-label="Mobil och ljud"><p><a class="text-button" href="/admin/mobile">Samma app hemma och borta &rarr;</a> &middot; <a class="text-button" href="/admin/speech">Uppl&auml;sning per profil &rarr;</a></p></nav>
 {% for msg in get_flashed_messages() %}<p class="notice success" role="status">{{ icon('check') }} {{ msg }}</p>{% endfor %}
 {% if error %}<p class="notice form-error" role="alert">{{ error }}</p>{% endif %}
 <div class="notice update-notice" id="admin-update-notice" hidden><span>En &auml;ndring har gjorts p&aring; en annan sk&auml;rm. Ditt formul&auml;r &auml;r kvar.</span><button type="button" class="chip" id="admin-refresh">Visa senaste</button></div>

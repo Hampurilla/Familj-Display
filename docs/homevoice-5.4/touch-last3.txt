@@ -1,0 +1,5 @@
+Chromium 144.0.7559.96
+PASS native finger held after scroll also pauses live updates
+PASS 1280x720 layout fits without horizontal overflow
+PASS 800x480 layout scrolls without side scrollbar
+RESULT 3 passed; 0 failed

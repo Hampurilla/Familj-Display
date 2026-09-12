@@ -1,0 +1,28 @@
+{% extends 'base.html' %}{% block title %}Samma app &ouml;verallt &middot; Hemma{% endblock %}
+{% block content %}<link rel="stylesheet" href="{{ asset('remote.css') }}">
+<main id="main" class="admin-main remote-page" data-mobile54>
+<a class="text-button" href="/admin?tab=settings">&larr; Till kontrollpanelen</a>
+<header class="remote-hero"><div><p class="eyebrow">Home &amp; Voice 5.4</p><h1>Samma ikon.<br><em>Hemma och borta.</em></h1><p>Spara adressen nedan en g&aring;ng. &Ouml;ppna sedan samma app oavsett om mobilen anv&auml;nder hemmets Wi-Fi eller 4G/5G.</p></div></header>
+<section class="remote-status" data-state="{{ remote.state }}">
+<h2 id="mobile54-title">{{ remote.title }}</h2><p id="mobile54-detail">{{ remote.detail }}</p>
+<div id="mobile54-address" class="remote-address" {% if not remote.url %}hidden{% endif %}>
+<label for="mobile54-url"><strong>Den h&auml;r adressen ska appikonen peka p&aring;</strong></label>
+<input id="mobile54-url" readonly value="{{ remote.url or '' }}" aria-label="Mobilappens permanenta adress">
+<div class="remote-actions"><a class="button" id="mobile54-open" href="{{ remote.url or '/admin' }}">&Ouml;ppna r&auml;tt adress</a><button class="button secondary" type="button" id="mobile54-copy">Kopiera en g&aring;ng</button></div>
+</div>
+<p id="mobile54-feedback" role="status" aria-live="polite"></p>
+<button class="text-button" id="mobile54-refresh" type="button">Kontrollera anslutningen igen</button>
+</section>
+<section class="admin-panel"><p class="eyebrow">G&ouml;r detta en g&aring;ng p&aring; mammans iPhone</p><h2>Spara den nya appikonen.</h2><ol>
+<li>Installera Tailscale och anslut mobilen till samma privata n&auml;tverk som Raspberryn, med eget inbjudet konto.</li>
+<li>I Tailscale: &ouml;ppna <strong>Settings &rarr; VPN On Demand</strong>. V&auml;lj <strong>Wi-Fi: Always</strong> och <strong>Cellular: Always</strong>. Undanta inte hemmets Wi-Fi f&ouml;r den h&auml;r l&ouml;sningen.</li>
+<li>&Ouml;ppna den exakta HTTPS-adressen ovan i <strong>Safari</strong>. Logga in med admin-PIN.</li>
+<li>V&auml;lj <strong>Dela &rarr; L&auml;gg till p&aring; hemsk&auml;rmen</strong> och aktivera <strong>&Ouml;ppna som webbapp</strong> om alternativet visas.</li>
+<li>Prova den nya ikonen f&ouml;rst p&aring; Wi-Fi, sedan med Wi-Fi av och mobildata p&aring;. Ta bort den gamla lokala ikonen efter att b&aring;da testerna fungerar.</li>
+</ol><p>Ikonen som pekar p&aring; <code>192.168...</code> beh&ouml;ver ers&auml;ttas en g&aring;ng. Sedan beh&ouml;ver ni inte byta eller kopiera l&auml;nkar.</p></section>
+<section class="admin-panel"><h2>Ingen adress &auml;n?</h2><p>S&auml;tt admin-PIN under Inst&auml;llningar. K&ouml;r sedan via SSH:</p><pre><code>cd ~/home-display
+python3 scripts/setup_home_voice.py remote
+python3 scripts/setup_home_voice.py address</code></pre><p>Vi hittar din faktiska Tailscale-adress automatiskt. Ingen exempeldom&auml;n anv&auml;nds som riktig l&auml;nk.</p></section>
+<section class="admin-panel"><h2>Uppl&auml;sning per profil.</h2><p>Aktivera l&auml;sknappar och bel&ouml;ningsr&ouml;st f&ouml;r exempelvis lillebror. &Ouml;vriga profiler kan vara tysta.</p><a class="button secondary" href="/admin/speech">St&auml;ll in uppl&auml;sning</a></section>
+<section class="admin-panel"><h2>Vad beh&ouml;vs f&ouml;r att det ska fungera?</h2><p>Tailscale ska vara anslutet &auml;ven hemma. Pi:n ska vara ig&aring;ng. F&ouml;r &aring;tkomst utifr&aring;n beh&ouml;ver b&aring;da enheterna internet. Den h&auml;r l&ouml;sningen g&ouml;r inte appen offentlig.</p><p>Den lokala v&auml;ggdisplayen anv&auml;nder fortfarande <code>127.0.0.1:5000</code> och fungerar utan internet. Ett nytt enhetsnamn eller Tailscale-n&auml;tverk kan &auml;ndra HTTPS-adressen. Andra VPN-appar kan st&ouml;ra Tailscale.</p></section>
+</main><script src="{{ asset('mobile54.js') }}" defer></script>{% endblock %}

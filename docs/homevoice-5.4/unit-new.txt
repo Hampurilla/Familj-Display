@@ -1,0 +1,49 @@
+test_funnel_not_accepted (test_homevoice54.MobileURLTests.test_funnel_not_accepted) ... ok
+test_only_verified_actual_address (test_homevoice54.MobileURLTests.test_only_verified_actual_address) ... ok
+test_unknown_never_invents_url (test_homevoice54.MobileURLTests.test_unknown_never_invents_url) ... ok
+test_patch_idempotent_and_touch_unchanged (test_homevoice54.PatchTests.test_patch_idempotent_and_touch_unchanged) ... ok
+test_busy_returns_instead_of_blocking (test_homevoice54.SynthesisTests.test_busy_returns_instead_of_blocking) ... ok
+test_cache_count_bounded (test_homevoice54.SynthesisTests.test_cache_count_bounded) ... ok
+test_cache_reused_and_command_not_shell (test_homevoice54.SynthesisTests.test_cache_reused_and_command_not_shell) ... ok
+test_engine_missing (test_homevoice54.SynthesisTests.test_engine_missing) ... ok
+test_invalid_wav_rejected (test_homevoice54.SynthesisTests.test_invalid_wav_rejected) ... ok
+test_real_swedish_wav (test_homevoice54.SynthesisTests.test_real_swedish_wav) ... ok
+test_sanitizes_and_limits_text (test_homevoice54.SynthesisTests.test_sanitizes_and_limits_text) ... ok
+test_timeout_releases_lock (test_homevoice54.SynthesisTests.test_timeout_releases_lock) ... ok
+test_valid_wav_accepted (test_homevoice54.SynthesisTests.test_valid_wav_accepted) ... ok
+test_archived_profile_rejected (test_homevoice54.VoiceCore.test_archived_profile_rejected) ... ok
+test_backup_made (test_homevoice54.VoiceCore.test_backup_made) ... ok
+test_disabled_audio_forbidden (test_homevoice54.VoiceCore.test_disabled_audio_forbidden) ... ok
+test_disabled_by_default (test_homevoice54.VoiceCore.test_disabled_by_default) ... ok
+test_invalid_does_not_modify (test_homevoice54.VoiceCore.test_invalid_does_not_modify) ... ok
+test_invalid_speed_rejected (test_homevoice54.VoiceCore.test_invalid_speed_rejected) ... ok
+test_invalid_volume_rejected (test_homevoice54.VoiceCore.test_invalid_volume_rejected) ... ok
+test_migration_is_idempotent (test_homevoice54.VoiceCore.test_migration_is_idempotent) ... ok
+test_migration_preserves_tasks (test_homevoice54.VoiceCore.test_migration_preserves_tasks) ... ok
+test_no_arbitrary_kind (test_homevoice54.VoiceCore.test_no_arbitrary_kind) ... ok
+test_no_extra_reward_for_tts (test_homevoice54.VoiceCore.test_no_extra_reward_for_tts) ... ok
+test_notes_disabled (test_homevoice54.VoiceCore.test_notes_disabled) ... ok
+test_notes_read (test_homevoice54.VoiceCore.test_notes_read) ... ok
+test_other_profile_stays_silent (test_homevoice54.VoiceCore.test_other_profile_stays_silent) ... ok
+test_pending_respects_completion (test_homevoice54.VoiceCore.test_pending_respects_completion) ... ok
+test_restart_persists_settings (test_homevoice54.VoiceCore.test_restart_persists_settings) ... ok
+test_reward_is_earned (test_homevoice54.VoiceCore.test_reward_is_earned) ... ok
+test_reward_option_off (test_homevoice54.VoiceCore.test_reward_option_off) ... ok
+test_saved_flags (test_homevoice54.VoiceCore.test_saved_flags) ... ok
+test_string_task_id_rejected (test_homevoice54.VoiceCore.test_string_task_id_rejected) ... ok
+test_version_bumped_on_settings (test_homevoice54.VoiceCore.test_version_bumped_on_settings) ... ok
+test_wrong_owner_rejected (test_homevoice54.VoiceCore.test_wrong_owner_rejected) ... ok
+test_csrf_guard (test_homevoice54_flask.VoiceFlask.test_csrf_guard) ... skipped 'Flask unavailable in this test environment'
+test_disabled_audio_rejected (test_homevoice54_flask.VoiceFlask.test_disabled_audio_rejected) ... skipped 'Flask unavailable in this test environment'
+test_health_extension_version (test_homevoice54_flask.VoiceFlask.test_health_extension_version) ... skipped 'Flask unavailable in this test environment'
+test_invalid_setting_not_500 (test_homevoice54_flask.VoiceFlask.test_invalid_setting_not_500) ... skipped 'Flask unavailable in this test environment'
+test_manifest_same_origin_admin (test_homevoice54_flask.VoiceFlask.test_manifest_same_origin_admin) ... skipped 'Flask unavailable in this test environment'
+test_new_pages (test_homevoice54_flask.VoiceFlask.test_new_pages) ... skipped 'Flask unavailable in this test environment'
+test_save_and_read_profile (test_homevoice54_flask.VoiceFlask.test_save_and_read_profile) ... skipped 'Flask unavailable in this test environment'
+test_valid_audio (test_homevoice54_flask.VoiceFlask.test_valid_audio) ... skipped 'Flask unavailable in this test environment'
+test_voice_admin_pin_guard (test_homevoice54_flask.VoiceFlask.test_voice_admin_pin_guard) ... skipped 'Flask unavailable in this test environment'
+
+----------------------------------------------------------------------
+Ran 44 tests in 0.312s
+
+OK (skipped=9)

@@ -7,6 +7,9 @@
 <link rel="icon" href="{{ asset('favicon.svg') }}" type="image/svg+xml">
 <link rel="stylesheet" href="{{ asset('style.css') }}">
 {% if touch_display %}<link rel="stylesheet" href="{{ asset('touch-kiosk.css') }}">{% endif %}
+<!-- FAMILJ_HOMEVOICE_5_4_ASSETS -->
+<link rel="stylesheet" href="{{ asset('voice54.css') }}">
+{% if boot.view in ['admin','login'] %}<link rel="manifest" href="/mobile.webmanifest"><link rel="apple-touch-icon" href="{{ asset('homevoice-icon-192.png') }}"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Hemma">{% endif %}
 </head><body class="{{ 'admin-page' if boot.view in ['admin','login'] else 'display-page' }}" data-view="{{ boot.view }}">
 <a class="skip-link" href="#main">Till inneh&aring;llet</a>
 {% include '_icons.html' %}
@@ -30,4 +33,5 @@
 {% if touch_display %}<script src="{{ asset('touch-kiosk.js') }}" defer></script>{% endif %}
 <script src="{{ asset('app.js') }}" defer></script>
 {% if boot.view=='admin' %}<script src="{{ asset('admin.js') }}" defer></script>{% endif %}
+{% if boot.view in ['user','admin'] %}<script src="{{ asset('voice54.js') }}" defer></script>{% endif %}
 </body></html>

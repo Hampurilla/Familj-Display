@@ -278,6 +278,16 @@ def create_app(root=None, start_workers=True, testing=False):
     def server_error(error):
         return render_template('error.html',message='N\u00e5got gick fel. Dina data finns kvar. Kontrollera tj\u00e4nstens logg.',boot=boot('error')),500
 
+    # FAMILJ_REMOTE_5_3
+    from familj.remote_access import register_remote
+    register_remote(app, store, boot)
+
+    # FAMILJ_HOMEVOICE_5_4
+    from familj.voice54 import register_voice
+    from familj.mobile54 import register_mobile
+    register_voice(app, store, boot)
+    register_mobile(app, store, boot)
+
     if start_workers:
         def worker():
             while True:

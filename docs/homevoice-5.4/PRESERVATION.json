@@ -1,0 +1,70 @@
+{
+  "familj/store.py": {
+    "unchanged": true,
+    "sha256": "44cdd72b75d48a0bb23aac1cb5ae06a44ae8674f4ea295141f3f670e72c3a453"
+  },
+  "familj/badges.py": {
+    "unchanged": true,
+    "sha256": "9bad5fb8ce3389d03c7191c8da84ae16646130f05674a671cf056bb21dbb5da1"
+  },
+  "familj/weather.py": {
+    "unchanged": true,
+    "sha256": "b0032c75c61fa127260407e3015018ca6dbbf266542f457d0aa011fbf60a89fd"
+  },
+  "static/app.js": {
+    "unchanged": true,
+    "sha256": "20cb66b2503960e22276ea2e01744d66f403724808d78325bbb1a463936fecdd"
+  },
+  "static/style.css": {
+    "unchanged": true,
+    "sha256": "c983451f45f65f603e8434265087eb297cbfcba2d15f04bd81626f82115819ae"
+  },
+  "static/touch-kiosk.js": {
+    "unchanged": true,
+    "sha256": "f0de35494d1dab3d08e65244a730285a32c8a08e32eec84c68381a2d03444d00"
+  },
+  "static/touch-kiosk.css": {
+    "unchanged": true,
+    "sha256": "8d81506f49f536e57df8b97922825a4d323c0b349b23af6ab25e2882515745b1"
+  },
+  "static/saver.js": {
+    "unchanged": true,
+    "sha256": "dfcebdf4c584b65eaef2b37dd93ca8df366a2a2f55b72efde5a5c0b1b0ab4e52"
+  },
+  "static/admin.js": {
+    "unchanged": true,
+    "sha256": "f3e8a77f94da0709f845b01a20d4cec55eece190bc5fa9bbda1528398c2d29b1"
+  },
+  "home-display.desktop": {
+    "unchanged": true,
+    "sha256": "ca22107f20ee42b3cb9b9cd4854fd5f39a82fc8d28ab3241ba8f585195b25a49"
+  },
+  "home-display.service": {
+    "unchanged": true,
+    "sha256": "0c4d45d7eb711477238f5c288c5112406e870eb4efe0bace34a2014c22f1f60b"
+  },
+  "install.sh": {
+    "unchanged": true,
+    "sha256": "cc9bd116ec17091997395a65b0640252f5dad4e774dfa3eb1143ea882b979ff1"
+  },
+  "scripts/kiosk.sh": {
+    "unchanged": true,
+    "sha256": "954521ced9aaf15de162a485f1ef98b00c4ba6ad307480b3c8955878e93dbaf1"
+  },
+  "templates/macros.html": {
+    "unchanged": true,
+    "sha256": "f320684708bb7a4577debe6a18c14d043fea56aa29a6d10891498da1c5b2b6d6"
+  },
+  "templates/partials/user_content.html": {
+    "unchanged": true,
+    "sha256": "133bbacf8a34964e62c126d5495176dbb602c1cca65ff1ac2bc170b73792a85a"
+  },
+  "templates/partials/home_content.html": {
+    "unchanged": true,
+    "sha256": "f17c27c0da0ff26fb8b99aae2e6b9b1ea1facfb25dde96ef732bf0d667c0e2ca"
+  },
+  "templates/partials/badges_content.html": {
+    "unchanged": true,
+    "sha256": "392e9d00cd95f5d8d44b1decd3ac59b01c0310eb32cd125aba092754e59a1b39"
+  }
+}

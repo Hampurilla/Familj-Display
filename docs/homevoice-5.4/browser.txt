@@ -1,0 +1,27 @@
+OK Enabled profile has read-all and per-task controls
+OK Touch engine remains active
+OK Scrollbar stays hidden
+OK Real Swedish WAV decoded and played in WebAudio
+OK Read button did not mark task complete
+OK Stop cancels reading
+OK Stop has visible feedback
+OK Reward speech used actual completed task id
+OK Live state update restores voice controls
+OK Turning voice off removes controls without reload
+OK Other profile has no read controls
+OK Voice admin 390 no horizontal overflow
+OK Voice admin 390 no kiosk engine
+OK Voice admin 390 editable volume works
+OK Mobile guide 390 shows canonical verified URL
+OK Mobile guide 390 no horizontal overflow
+OK Mobile guide 390 address unchanged on refresh
+OK Mobile guide 390 manifest has relative origin
+OK Voice admin 1280 no horizontal overflow
+OK Voice admin 1280 no kiosk engine
+OK Voice admin 1280 editable volume works
+OK Mobile guide 1280 shows canonical verified URL
+OK Mobile guide 1280 no horizontal overflow
+OK Mobile guide 1280 address unchanged on refresh
+OK Mobile guide 1280 manifest has relative origin
+OK No browser JavaScript exceptions
+26 browser checks passed
